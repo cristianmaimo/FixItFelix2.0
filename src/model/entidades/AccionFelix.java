@@ -1,0 +1,5 @@
+package model.entidades;
+
+public enum AccionFelix {
+	PARADO, MOVIENDO_IZQ, MOVIENDO_ARR, MOVIENDO_ABA, MOVIENDO_DER, ARREGLANDO, MURIENDO, PASANDO;
+}
