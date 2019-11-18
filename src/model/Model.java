@@ -35,7 +35,7 @@ public class Model{
 	private ArrayList<Puntaje> puntajesMaximos;
 	private Puntaje puntajeActual;
 	
-	private Dificultad dificultadBase;
+	private Dificuasdltad dificultadBase;
 	private Dificultad dificultadActual;
 	private int nivelActual;
 	
