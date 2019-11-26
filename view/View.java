@@ -92,7 +92,7 @@ public class View extends JFrame{
 				imagenes.put(temp, imagen);
 			}
 		}
-		imagenes.put("felixMuriendo4", new ImageIcon(Constantes.PATHIMAGES + "felixMuriendo4.png"));
+		imagenes.put("felixMuriendo4", new ImageIcon(Constantes.PATHIMAGES + "felix/felixMuriendo4.png"));
 
 		for (int i = 0; i < 4; i++) {
 			temp = "felixReparando" + i + "I";
@@ -137,12 +137,12 @@ public class View extends JFrame{
 		imagenes.put("nicelander1", new ImageIcon(Constantes.PATHIMAGES + "pastel/nicelander1.png"));
 
 		// Proyectiles
-		imagenes.put("ladrillo1", new ImageIcon(Constantes.PATHIMAGES + "proyectiles/ladrillo1.png"));
 		imagenes.put("ladrillo0", new ImageIcon(Constantes.PATHIMAGES + "proyectiles/ladrillo0.png"));
-		imagenes.put("pajaroRight1", new ImageIcon(Constantes.PATHIMAGES + "proyectiles/pajaroRight1.png"));
+		imagenes.put("ladrillo1", new ImageIcon(Constantes.PATHIMAGES + "proyectiles/ladrillo1.png"));
 		imagenes.put("pajaroRight0", new ImageIcon(Constantes.PATHIMAGES + "proyectiles/pajaroRight0.png"));
-		imagenes.put("pajaroLeft1", new ImageIcon(Constantes.PATHIMAGES + "proyectiles/pajaroLeft1.png"));
+		imagenes.put("pajaroRight1", new ImageIcon(Constantes.PATHIMAGES + "proyectiles/pajaroRight1.png"));
 		imagenes.put("pajaroLeft0", new ImageIcon(Constantes.PATHIMAGES + "proyectiles/pajaroLeft0.png"));
+		imagenes.put("pajaroLeft1", new ImageIcon(Constantes.PATHIMAGES + "proyectiles/pajaroLeft1.png"));
 
 		// Ralph
 		imagenes.put("ralphParado", new ImageIcon(Constantes.PATHIMAGES + "ralph/ralphParado.png"));
@@ -154,6 +154,13 @@ public class View extends JFrame{
 		imagenes.put("ralphGolpeando1", new ImageIcon(Constantes.PATHIMAGES + "ralph/ralphGolpeando1.png"));
 		imagenes.put("ralphGolpeando2", new ImageIcon(Constantes.PATHIMAGES + "ralph/ralphGolpeando2.png"));
 		imagenes.put("ralphGolpeando3", new ImageIcon(Constantes.PATHIMAGES + "ralph/ralphGolpeando3.png"));
-
+		
+		//Placeholder
+		imagenes.put("placeholder", new ImageIcon(Constantes.PATHIMAGES + "placeholder.png"));
+	}
+	public void reiniciarPanelJuego() {
+		remove(panelJuego);
+		panelJuego = new PanelJuego(tamañoFrame);
+		add(panelJuego);
 	}
 }

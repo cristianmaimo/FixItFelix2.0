@@ -34,8 +34,6 @@ public class MainMenu extends JPanel{
 	
 	private void initLogo() {
 		logo = new JLabel(View.getImagenes().get("logo"));
-//		logo = new JLabel(View.getImagenes().get("logo"));
-//		logo = new JLabel(new ImageIcon("assets/images/mainmenu/logo.png"));
 		logo.setBorder(null);
 		logo.setLocation(38, 20);
 		logo.setSize(logo.getPreferredSize());
@@ -130,7 +128,6 @@ public class MainMenu extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Controler.getControler().abrirJuego();
-				setVisible(false);
 			}
 		});
 		add(jugar);

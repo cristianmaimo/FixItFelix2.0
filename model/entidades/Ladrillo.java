@@ -53,6 +53,10 @@ public class Ladrillo extends Proyectil {
 	@Override
 	public void mover() {
 		posicion.addY(velocidad);
+		if (indexAnim > (Constantes.LADRILLOFRAMES*2)) {
+			indexAnim = 0;
+		}
+		else indexAnim++;
 	}
 	
 	/**
@@ -66,7 +70,7 @@ public class Ladrillo extends Proyectil {
 	public String getNombreImagen() {
 		String name = "ladrillo";
 		
-		if (indexAnim > Constantes.PAJAROFRAMES) {
+		if (indexAnim > Constantes.LADRILLOFRAMES) {
 			name += "1";
 		}
 		else name += "0";

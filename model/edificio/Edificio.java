@@ -104,16 +104,10 @@ public class Edificio {
 	 * @see Felix#reparar()
 	 * @see Model#sumarPuntaje(int)
 	 */
-	public void reparar(Posicion pos) throws FinDeSeccionException, FinDeNivelException{
+	public void reparar(Posicion pos) throws FinDeSeccionException{
 		if (secciones[seccionActual].reparar(pos) == 0) {
 			Model.getModel().sumarPuntaje(400);
-			try {
-				avanzarSeccion();
-				throw new FinDeSeccionException();
-			}
-			catch (FinDeNivelException e) {
-				throw e;
-				}
+			throw new FinDeSeccionException();
 		}
 	}
 	
@@ -124,7 +118,7 @@ public class Edificio {
 	 * @throws FinDeNivelException 
 	 * @throws FinDeSeccionException 
 	 */	
-	private void avanzarSeccion() throws FinDeNivelException {
+	public void avanzarSeccion() throws FinDeNivelException {
 		seccionActual++;
 		Model.getModel().reiniciarEntidades();
 		if (seccionActual >= Constantes.CANTIDADSECCIONES) {
@@ -149,7 +143,6 @@ public class Edificio {
 			secciones[2] = new Seccion(false, (int) (Math.ceil(dif.VENTANASROTAS/3)), (int) (Math.ceil(dif.CANTIDADOBSTACULOS/3)));
 			break;
 		}
-
 	}
 
 	/**

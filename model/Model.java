@@ -15,6 +15,7 @@ import model.edificio.Edificio;
 import model.edificio.InfoVentana;
 import model.entidades.*;
 import model.utilidades.*;
+import view.View;
 
 /**
  * La clase Model se encarga de la lógica general del juego. Inicio y fin de nivel y partida, dificultad, conteo de puntajes,
@@ -39,8 +40,6 @@ public class Model{
 	private Pastel pastel;
 	private Random randomizador = new Random();
 	
-	private ArrayList<InfoVentana> cambiosVentanas;
-	
 	//CONSTRUCTOR
 	/**
 	 * Model es un singleton que se contruye de modo estático.<br>
@@ -59,7 +58,6 @@ public class Model{
 		Felix.iniciarFelix();
 		proyectiles = new ArrayList<Proyectil>(0);
 		pastel = new Pastel();
-		cambiosVentanas = null;
 	}	
 	
 	//PUBLIC
@@ -84,22 +82,17 @@ public class Model{
 	 * @throws ChoqueLadrilloException 
 	 * @throws ChoquePajaroException 
 	 */
-	public void actualizar()throws FinDeNivelException, FinDeSeccionException{
-		cambiosVentanas = null;
+	public void actualizar()throws FinDeSeccionException, ChoquePajaroException, ChoqueLadrilloException{
 		Ralph.getRalph().actualizar();
 		pastel.actualizar();
 		try {
-			actualizarProyectiles();
-		}
-		catch (ChoquePajaroException e) {
+		actualizarProyectiles();
+		} catch (ChoquePajaroException e) {
 			Felix.getFelix().colicion(false);
-		}
-		catch (ChoqueLadrilloException e) {
+		} catch (ChoqueLadrilloException e) {
 			Felix.getFelix().colicion(true);
 		}
-		finally	{
-			Felix.getFelix().actualizar();
-		}
+		Felix.getFelix().actualizar();
 	}
 	
 	/**
@@ -156,7 +149,6 @@ public class Model{
 	public void reiniciarNivel() {
 		Edificio.nuevoNivel(dificultadActual);
 		reiniciarEntidades();
-		Felix.getFelix().setPosicion(Constantes.FELIXSTART2);
 	}	
 	
 	/**
@@ -225,10 +217,6 @@ public class Model{
 		if (puntajesMaximos.size() > 5) puntajesMaximos.remove(5);
 	}
 
-	public void cambioVentana(InfoVentana infoVentana) {
-		if (cambiosVentanas == null) cambiosVentanas = new ArrayList<InfoVentana>();
-		cambiosVentanas.add(infoVentana);
-	}
 	
 	//GETTERS Y SETTERS
 	public Dificultad getDificultadActual() {
@@ -238,18 +226,16 @@ public class Model{
 		return puntajesMaximos;
 	}
 	public ArrayList<Proyectil> getProyectiles() {
-		return this.proyectiles;
+		return proyectiles;
 	}
 	public ArrayList<InfoVentana> infoSeccion(int seccion){
 		return Edificio.getEdificio().infoSeccion(seccion);
 	}
-	public void setNivelActual(int i) {
-		nivelActual = i;
+	public void setNivelInicial(int nivelInicial) {
+		nivelActual = nivelInicial;
 		dificultadActual = new Dificultad(dificultadBase, nivelActual);
 		Edificio.nuevoNivel(dificultadActual);
-	}
-	public ArrayList<InfoVentana> cambiosVentanas(){
-		return cambiosVentanas;
+		View.getView().panelJuego.actualizarMarcos();
 	}
 	
 	//PRIVATE
@@ -289,7 +275,6 @@ public class Model{
 		puntajesMaximos.add(new Puntaje(3600, "Pedro"));
 		puntajesMaximos.add(new Puntaje(1000, "Pedro"));
 	}
-
 
 
 }

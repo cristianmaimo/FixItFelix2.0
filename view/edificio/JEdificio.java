@@ -42,17 +42,32 @@ public class JEdificio extends JLabel{
 	}
 
 	public void actualizar() {
-		ArrayList<InfoVentana> cambios = Model.getModel().cambiosVentanas();
-		if (cambios != null) {
-			ArrayList<JVentana> jseccionActual = jsecciones[Edificio.getEdificio().getSeccionActual()].jventanas;
-			for (InfoVentana ventanaActual : cambios) {
-				for (JVentana jventanaActual : jseccionActual)
-					if ((ventanaActual.getPosicion().getCoordenadaX() == jventanaActual.getLocation().x) &&
-						(ventanaActual.getPosicion().getCoordenadaY() == jventanaActual.getLocation().y)) {
-						jventanaActual.actualizarPaneles(ventanaActual);
-					}
-			}
+		int seccionActual = Edificio.getEdificio().getSeccionActual();
+		switch (seccionActual){
+		case 0:
+			setLocation(Constantes.OFFSETXEDIFICIO, -815);
+			break;
+		case 1:
+			setLocation(Constantes.OFFSETXEDIFICIO, -479);
+			break;
+		case 2:
+			setLocation(Constantes.OFFSETXEDIFICIO, -143);
+			break;
 		}
-		
+		ArrayList<InfoVentana> seccion = Edificio.getEdificio().infoSeccion(seccionActual);
+		ArrayList<JVentana> jseccionActual = jsecciones[Edificio.getEdificio().getSeccionActual()].jventanas;
+		for (InfoVentana ventanaActual : seccion) {
+			for (JVentana jventanaActual : jseccionActual)
+				if ((ventanaActual.getPosicion().getCoordenadaX() == jventanaActual.getLocation().x) &&
+					(ventanaActual.getPosicion().getCoordenadaY() == jventanaActual.getLocation().y)) {
+					jventanaActual.actualizarPaneles(ventanaActual);
+				}
+		}
+	}
+
+	public void actualizarMarcos() {
+		for (int i = 0; i < Constantes.CANTIDADSECCIONES; i++) {
+			jsecciones[i].actualizarMarcos(Edificio.getEdificio().infoSeccion(i));
+		}
 	}
 }

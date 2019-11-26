@@ -14,11 +14,11 @@ public class Dificultad {
 	//public final int TIEMPOLIMITE;
 	
 	public Dificultad(){
-		VENTANASROTAS = 18;
-		CHANCEGOLPEAR = 10;
-		VELOCIDADLADRILLOS = 10; // Pixeles por loop
-		VELOCIDADPAJAROS = 1; // Pixeles por loop
-		CANTIDADOBSTACULOS = 5; // Total de obstaculos por nivel
+		VENTANASROTAS = 12;
+		CHANCEGOLPEAR = 2;
+		VELOCIDADLADRILLOS = 2; // Pixeles por loop
+		VELOCIDADPAJAROS = 2; // Pixeles por loop
+		CANTIDADOBSTACULOS = 3; // Total de obstaculos por nivel
 		// Todavia no implementado
 		//TIEMPOLIMITE = 0;
 		CANTIDADPAJAROS = 1;

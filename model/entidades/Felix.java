@@ -41,15 +41,16 @@ public class Felix extends Entidad {
 
 	// PUBLIC
 	public static void iniciarFelix() {
-		if (instancia == null) {
 			instancia = new Felix();
-		}
 	}
 	public static Felix getFelix() {
 		return instancia;
 	}
-	public void actualizar() throws FinDeSeccionException, FinDeNivelException{
-		if (inmune) tiempoInmune--;
+	public void actualizar() throws FinDeSeccionException, ChoqueLadrilloException, ChoquePajaroException{
+		if (inmune) {
+			if (tiempoInmune == 0) inmune = false;
+			else tiempoInmune--;
+		}
 		switch (estado.accion) {
 		case PARADO:
 			break;
@@ -108,6 +109,7 @@ public class Felix extends Entidad {
  	public void colicion(boolean reiniciarNivel){
 		estado.setAccion(AccionFelix.MURIENDO);
 		inmune = true;
+		tiempoInmune = 999;
 		this.reiniciarNivel = reiniciarNivel;
 	}
 	public void comer() {
@@ -120,22 +122,30 @@ public class Felix extends Entidad {
 		switch (estado.accion){
 		case PARADO:
 			nombre += "Parado";
+			if (inmune) nombre += "I";
 			break;
 		case MOVIENDO:
 			nombre += "Moviendo";
+			if (inmune) nombre += "I";
 			break;
 		case REPARANDO:
-			if (frame < 15) nombre += "Reparando0";
+			if (frame < 7) nombre += "Reparando0";
 			else if ((frame >= 7) && (frame < 14)) nombre += "Reparando1";
 			else if ((frame >= 14) && (frame < 21)) nombre += "Reparando2";
 			else nombre += "Reparando3";
+			if (inmune) nombre += "I";
 			break;
 		case MURIENDO:
+			if (frame < 12) nombre += "Muriendo0";
+			else if ((frame >= 12) && (frame < 24)) nombre += "Muriendo1";
+			else if ((frame >= 24) && (frame < 36)) nombre += "Muriendo2";
+			else if ((frame >= 36) && (frame < 48)) nombre += "Muriendo3";
+			else nombre += "Muriendo4";
 			break;
 		case COMIENDO:
 			break;
 		}
-		if (inmune) nombre += "I";
+		
 		return nombre;
 	}
 	
@@ -172,34 +182,34 @@ public class Felix extends Entidad {
 		case 5:	
 			estado.frame++;
 			estado.setAccion(AccionFelix.PARADO);
-			ocupado = false;
+//			ocupado = false;
 			break;
 		default:
 			estado.frame++;
 			break;
 		}
 	}
-	private void reparando() throws FinDeSeccionException, FinDeNivelException {
+	private void reparando() throws FinDeSeccionException{
 		if (estado.frame == 28) {
 			Edificio.getEdificio().reparar(posicion.aVentana());
 			estado.setAccion(AccionFelix.PARADO);
 			ocupado = false;
 		} else estado.frame++;
 	}
-	private void muriendo() {
+	private void muriendo() throws ChoqueLadrilloException, ChoquePajaroException {
 		switch (estado.frame) {
 		case 0:
 			ocupado = true;
 			vidas--;
 			estado.frame++;
 			break;
-		case 180:
-			if (reiniciarNivel == true) {
-				Model.getModel().reiniciarNivel();
-			} else Edificio.getEdificio().reiniciarSeccion();
+		case 60:
 			estado.setAccion(AccionFelix.PARADO);
 			ocupado = false;
-			break;
+			inmune = false;
+			tiempoInmune = 0;
+			if (reiniciarNivel == true) throw new ChoqueLadrilloException();
+			else throw new ChoquePajaroException();
 		default:
 			estado.frame++;
 		}

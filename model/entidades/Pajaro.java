@@ -20,14 +20,15 @@ public class Pajaro extends Proyectil {
 	 */
 	public Pajaro(int vel, int coordY) {
 		velocidad = vel;
+		hitbox = Constantes.PAJAROHITBOX;
 		int coordX;
-		if (randomizador.nextInt(2) == 0) coordX = -Constantes.PAJAROHITBOX.getAncho() - Constantes.OFFSETXSECCION;
-		else coordX = Constantes.ANCHOSECCION + Constantes.OFFSETXSECCION;
+		if (randomizador.nextInt(2) == 0) coordX = -hitbox.getAncho()*2 - Constantes.OFFSETXVISUAL;
+		else coordX = Constantes.ANCHOSECCION + hitbox.getAncho() + Constantes.OFFSETXVISUAL;
 		posicion = new Posicion(coordX, coordY);
 		indexAnim = 0;
-		hitbox = Constantes.PAJAROHITBOX;
+
 	}
-	
+
 	//PUBLIC
 	/**
 	 * El movimiento de los pajaros es horizontal sumando a la coordenadaX el valor en velocidad que puede ser positivo o negativo si está llendo hacia la derecha o izaquierda respectivamente.
@@ -48,8 +49,8 @@ public class Pajaro extends Proyectil {
 	@Override
 	public void actualizar() throws ChoquePajaroException {
 		mover();
-		if ((posicion.getCoordenadaX() < (-hitbox.getAncho() - Constantes.OFFSETXSECCION)) ||
-			(posicion.getCoordenadaX() > (Constantes.ANCHOSECCION + Constantes.OFFSETXSECCION))) {
+		if ((posicion.getCoordenadaX() < (-hitbox.getAncho()*2 - Constantes.OFFSETXVISUAL)) ||
+			(posicion.getCoordenadaX() > (Constantes.ANCHOSECCION + hitbox.getAncho() + Constantes.OFFSETXVISUAL))) {
 			girar();
 		}
 		if (hayColicion()) {
@@ -65,11 +66,11 @@ public class Pajaro extends Proyectil {
 
 	//GETTERS Y SETTERS
 	public String getNombreImagen() {
-		String name = "";
+		String name = "pajaro";
 		if (velocidad > 0) {
-			name += "pajaroRight";
+			name += "Right";
 		}
-		else name += "pajaroLeft";
+		else name += "Left";
 		
 		if (indexAnim > Constantes.PAJAROFRAMES) {
 			name += "1";

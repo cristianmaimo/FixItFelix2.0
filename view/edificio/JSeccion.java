@@ -6,6 +6,7 @@ import java.util.Iterator;
 import javax.swing.JComponent;
 
 import controler.Constantes;
+import model.edificio.Edificio;
 import model.edificio.InfoVentana;
 
 class JSeccion extends JComponent {
@@ -26,5 +27,10 @@ class JSeccion extends JComponent {
 			jventanas.add(jventana);
 			add(jventanas.get(i));
 		}
+	}
+
+	public void actualizarMarcos(ArrayList<InfoVentana> infoSeccion) {
+		for (int i = 0; i < Constantes.CANTIDADVENTANAS; i++)
+			jventanas.get(i).actualizarMarco(infoSeccion.get(i));
 	}
 }

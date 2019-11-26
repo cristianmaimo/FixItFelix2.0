@@ -90,7 +90,7 @@ class Semicircular extends Ventana {
 		info.setImgPaneles(nombres);
 		
 		ArrayList<Posicion> offsets = new ArrayList<Posicion>(8); 
-		offsets.add(new Posicion(8, 76));
+		offsets.add(new Posicion(8, 75));
 		offsets.add(new Posicion(20, 75));
 		offsets.add(new Posicion(38, 75));
 		offsets.add(new Posicion(50, 75));

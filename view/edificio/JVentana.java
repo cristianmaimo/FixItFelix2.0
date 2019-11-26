@@ -28,23 +28,21 @@ class JVentana extends JComponent {
 		
 		HashMap<String, ImageIcon> imagenes = View.getImagenes();
 		
-		if (infoventana.hayMoldura()) {
-			moldura = new JLabel(imagenes.get("moldura"));
-			moldura.setLocation(9, 8);
-			moldura.setSize(moldura.getPreferredSize());
-			add(moldura);
-		}
-		if (infoventana.hayMacetero()) {
-			macetero = new JLabel(imagenes.get("macetero"));
-			macetero.setLocation(11, 80);
-			macetero.setSize(macetero.getPreferredSize());
-			add(macetero);
-			
-		}
+		moldura = new JLabel();
+		moldura.setLocation(9, 8);
+		moldura.setSize(50, 12);
+		add(moldura);
+		if (infoventana.hayMoldura()) moldura.setIcon(imagenes.get("moldura"));
+
+		macetero = new JLabel();
+		macetero.setLocation(11, 80);
+		macetero.setSize(46,32);
+		add(macetero);
+		if (infoventana.hayMacetero()) macetero.setIcon(imagenes.get("macetero"));
 		
 		marco = new JLabel(imagenes.get(infoventana.getImgMarco()));
 		marco.setLocation(0, 0);
-		marco.setSize(marco.getPreferredSize());
+		marco.setSize(68,112);
 		add(marco);
 			
 		paneles = new JLabel[infoventana.getPosicionPaneles().size()];
@@ -63,5 +61,14 @@ class JVentana extends JComponent {
 		for (int i=0; i<ventanaActual.getPosicionPaneles().size(); i++) {
 			paneles[i].setIcon(View.getImagenes().get(ventanaActual.getImgPaneles()[i]));
 		}
+	}
+	
+	public void actualizarMarco(InfoVentana ventanaActual) {
+		if (ventanaActual.hayMoldura()) moldura.setIcon(View.getImagenes().get("moldura"));
+		else moldura.setIcon(View.getImagenes().get("placeholder"));
+		
+		if (ventanaActual.hayMacetero()) macetero.setIcon(View.getImagenes().get("macetero"));
+		else macetero.setIcon(View.getImagenes().get("placeholder"));
+		marco.setIcon(View.getImagenes().get(ventanaActual.getImgMarco()));
 	}
 }

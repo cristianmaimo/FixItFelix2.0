@@ -47,7 +47,7 @@ public class Config extends JPanel{
 		ok.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Model.getModel().setNivelActual(nivel.getSelectedIndex() + 1);
+				Controler.getControler().setNivelInicial(nivel.getSelectedIndex() + 1);
 				setVisible(false);
 				Controler.getControler().backToMenu();
 			}

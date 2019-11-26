@@ -78,7 +78,7 @@ class Seccion {
 		int seReparo = ventana.reparar();
 		if (seReparo > 0) {
 			roturasRestantes--;
-			Model.getModel().cambioVentana(getInfoVentana(pos));
+//			Model.getModel().cambioVentana(getInfoVentana(pos));
 			if (seReparo == 2) {	//Panel completamente reparado.
 				Model.getModel().sumarPuntaje(100);
 			}

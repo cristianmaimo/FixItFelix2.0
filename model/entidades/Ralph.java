@@ -36,9 +36,7 @@ public class Ralph {
 
 	// PUBLIC
 	public static void iniciarRalph() {
-		if (instancia == null) {
 			instancia = new Ralph();
-		}
 	}
 	
 	public static Ralph getRalph() {
@@ -77,7 +75,7 @@ public class Ralph {
 		String nombre = "ralph";
 		switch (estado.accion) {
 		case PARADO:
-			nombre += "ralphParado";
+			nombre += "Parado";
 			break;
 		case MOVIENDO:
 			nombre += "Moviendo";
@@ -108,24 +106,29 @@ public class Ralph {
 
 	// PRIVATE
 	private void siguienteAccion() {
-		int rand = randomizador.nextInt(101);
-		if (rand < Constantes.CHANCEMOVER) {
-			posicionDestino = randomizador.nextInt(Constantes.ANCHOSECCION - Constantes.RALPHANCHO);
-			estado.setAccion(AccionRalph.MOVIENDO);
-		} else if ((cantLadrillos > 0)
-				&& (rand < (Constantes.CHANCEMOVER + Model.getModel().getDificultadActual().CHANCEGOLPEAR))) {
-			estado.setAccion(AccionRalph.GOLPEANDO);
-			frameTirar.add(randomizador.nextInt(180));
-			int temp, i = 0;
-			// elije 3 frames de la animacion para tirar ladrillos
-			do {
-				temp = randomizador.nextInt(180);
-				if (!frameTirar.contains(temp)) {
-					frameTirar.add(temp);
-					i++;
-				}
-			} while (i < 3);
+		if (estado.frame > 60) {
+			int rand = randomizador.nextInt(101);
+			if (rand < Constantes.CHANCEMOVER) {
+				do {
+					posicionDestino = randomizador.nextInt(Constantes.ANCHOSECCION - Constantes.RALPHANCHO);
+				} while ((posicionDestino < posicion.getCoordenadaX() + 50) && (posicionDestino > posicion.getCoordenadaX() - 50));
+				estado.setAccion(AccionRalph.MOVIENDO);
+			} else if ((cantLadrillos > 0)
+					&& (rand < (Constantes.CHANCEMOVER + Model.getModel().getDificultadActual().CHANCEGOLPEAR))) {
+				estado.setAccion(AccionRalph.GOLPEANDO);
+				frameTirar.add(randomizador.nextInt(180));
+				int temp, i = 0;
+				// elije 3 frames de la animacion para tirar ladrillos
+				do {
+					temp = randomizador.nextInt(180);
+					if (!frameTirar.contains(temp)) {
+						frameTirar.add(temp);
+						i++;
+					}
+				} while (i < 3);
+			}
 		}
+		else estado.frame++;
 	}
 	private void mover() {
 		if ((posicion.getCoordenadaX() >= (posicionDestino - Constantes.VELOCIDADRALPH / 2))

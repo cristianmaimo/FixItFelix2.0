@@ -1,8 +1,11 @@
 package controler;
 
+import java.util.Collection;
+
 import model.entidades.Ralph;
 import model.utilidades.Hitbox;
 import model.utilidades.Posicion;
+import view.entidades.JProyectil;
 
 /**
  * Coleccion de <kbd>CONSTANES</kbd> de valores que afectan distintas dinamicas del juego.
@@ -49,18 +52,21 @@ public class Constantes {
 	public static final int CANTLADRILLOS = 40;
 	public static final Posicion RALPHSTART = new Posicion((int) (ANCHOVENTANA*2.5) - (RALPHANCHO/2) , -RALPHALTO);
 	public static final long TIEMPOMOVERRALPH = 5000;
-	public static final int VELOCIDADRALPH = 5; // Pixeles por loop
-	public static final int	CHANCEMOVER = 15; // Porcentaje
+	public static final int VELOCIDADRALPH = 1; // Pixeles por frame
+	public static final int	CHANCEMOVER = 20; // Porcentaje
 	public static final long TIEMPOGOLPEANDO = 3000; // Milisegundos
 		
 
 	// Entidades
-	public static final int CHANCEROMPER = 1;
+	public static final int CANTIDADPROYECTILES = 15;
 	public static final Hitbox LADRILLOHITBOX = new Hitbox(24, 16);
+	public static final int LADRILLOFRAMES = 15;
+	public static final int CHANCEROMPER = 1;
 	public static final Hitbox PAJAROHITBOX = new Hitbox(42, 38);
+	public static final int PAJAROFRAMES = 20;
 	public static final int PAJAROOFFSET = 37; //Pixeles
-	public static final int PAJAROFRAMES = 30;
-	public static final int LADRILLOFRAMES = 30;
+
+
 	
 	// Pastel
 	public static final int PASTELOFFSETX = (int)(ANCHOVENTANA / 2); // Pixeles
@@ -78,5 +84,7 @@ public class Constantes {
 	
 	public static final String PATHIMAGES = "assets/images/";
 	public static final String PATHSAVES = "assets/saves/";
+
+	
 
 }

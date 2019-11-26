@@ -16,10 +16,7 @@ public class JFelix extends JLabel {
 		setBorder(null);
 //		setOpaque(true);
 		setSize(70,68);
-		setIcon(View.getImagenes().get("felixParado"));
-		int x = Felix.getFelix().getPosicion().getCoordenadaX() + Constantes.OFFSETXVISUAL;
-		int y = Felix.getFelix().getPosicion().getCoordenadaY() + Constantes.OFFSETYVISUAL;
-		setLocation(x, y);
+		actualizar();
 	}
 
 	public void actualizar() {
