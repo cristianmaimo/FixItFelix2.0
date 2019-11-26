@@ -1,5 +1,0 @@
-package view;
-
-public enum Vista {
-	LAUNCHER, REGLAS, TOPSCORES, JUEGO, AGREGARPUNTAJE, CONFIGURACION;
-}
