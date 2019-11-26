@@ -146,7 +146,7 @@ public class Ralph {
 		}
 	}
 	private void golpear() {
-		if (estado.frame >= 180) {
+		if (estado.frame == 180) {
 			estado.setAccion(AccionRalph.PARADO);
 		} else if (frameTirar.contains(estado.frame)) {
 			// randomiza una posicion X para el ladrillo
@@ -155,6 +155,7 @@ public class Ralph {
 			Model.getModel().agregarLadrillo(new Posicion(ladrilloX, 0));
 			frameTirar.remove(estado.frame);
 		}
+		estado.frame++;
 	}
 
 }
