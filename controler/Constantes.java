@@ -83,7 +83,7 @@ public class Constantes {
 	public static final int OFFSETYVISUAL = Constantes.ALTURAVENTANA + Constantes.HEADER;
 	
 	public static final String PATHIMAGES = "assets/images/";
-	public static final String PATHSAVES = "assets/saves/";
+	public static final String PATHPUNTAJES = "assets/highscores.dat";
 
 	
 

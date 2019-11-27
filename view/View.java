@@ -12,6 +12,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import controler.Constantes;
+import view.paneles.Config;
+import view.paneles.MainMenu;
+import view.paneles.PanelJuego;
+import view.paneles.Reglas;
+import view.paneles.TopScores;
 
 public class View extends JFrame{
 	private static View instancia;

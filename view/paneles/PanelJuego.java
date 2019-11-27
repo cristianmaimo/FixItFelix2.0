@@ -1,4 +1,4 @@
-package view;
+package view.paneles;
 
 import java.awt.Color;
 import java.awt.*;
@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import view.View;
 import view.edificio.*;
 import view.entidades.JFelix;
 import view.entidades.JProyectil;

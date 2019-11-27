@@ -1,10 +1,11 @@
-package view;
+package view.paneles;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
 import controler.Controler;
+import view.View;
 
 public class MainMenu extends JPanel{
 	private JButton jugar;

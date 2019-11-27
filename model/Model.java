@@ -1,10 +1,19 @@
 package model;
 
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.NotSerializableException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.URI;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
@@ -28,8 +37,6 @@ import view.View;
  * @see Entidad
  */
 public class Model{
-	ObjectOutputStream salida = null;
-	ObjectInputStream entrada = null;
 	private static Model instancia;
 	private ArrayList<Puntaje> puntajesMaximos;
 	private Puntaje puntajeActual;
@@ -47,8 +54,13 @@ public class Model{
 	 *
 	 */
 	private Model(){
-//		puntajesMaximos = cargarPuntajes();
-		puntajeActual = new Puntaje(0, "");
+		puntajesMaximos = new ArrayList<Puntaje>(5);
+		try {
+			cargarPuntajes();
+		} catch(IOException e) {
+			System.out.println("Problema al leer archivo highscores.dat");
+		}
+		puntajeActual = new Puntaje(0, "Desconocido");
 		nivelActual = 1;
 		dificultadBase = new Dificultad();
 		dificultadActual = new Dificultad(dificultadBase, nivelActual);
@@ -160,7 +172,7 @@ public class Model{
 	 */
 	public void avanzarNivel() throws FinDeJuegoException {
 		nivelActual++;
-		if (nivelActual <= 10) {
+		if (nivelActual <= 1) {
 			dificultadActual = new Dificultad(dificultadBase, nivelActual);
 			Edificio.nuevoNivel(dificultadActual);
 			reiniciarEntidades();
@@ -196,25 +208,30 @@ public class Model{
 	}
 	
 	/**
-	 * Compara el puntaje actual con la lista de {@link #puntajesMaximos} agrega de de manera ordenada en caso
-	 * de ser un nuevo Puntaje Maximo.
+	 * Compara el puntaje actual con la lista de {@link #puntajesMaximos}
+	 * retorna el indice donde agregar el nuevo puntaje maximo, o -1 en caso de no serlo
 	 */
-	public void verificarPuntaje(String nombre) {
-		if ((puntajesMaximos.size() < 5) || (puntajeActual.getPuntaje() > puntajesMaximos.get(4).getPuntaje())) {
-			Iterator<Puntaje> it = puntajesMaximos.iterator();
-			int i;
-			for (i = 0 ; i < puntajesMaximos.size() ; i++) {
-				if (it.hasNext()) {
-					if (puntajeActual.getPuntaje() > puntajesMaximos.get(i).getPuntaje()) {
-						continue;
-					}
+	public int verificarPuntaje() {
+		int i;
+		if ((puntajeActual.getPuntaje() > puntajesMaximos.get(4).getPuntaje())) {
+			for (i = 0; i < puntajesMaximos.size(); i++) {
+				if (puntajeActual.getPuntaje() > puntajesMaximos.get(i).getPuntaje()) {
+					break;
 				}
 			}
-			puntajeActual.setNombre(nombre);
-			puntajesMaximos.add(--i, puntajeActual);
-			System.out.println(" Nuevo Puntaje Maximo ");
 		}
-		if (puntajesMaximos.size() > 5) puntajesMaximos.remove(5);
+		else i = -1;
+		return i;
+	}
+
+	public void actualizarPuntajes(int indexPuntaje) {
+		puntajesMaximos.add(indexPuntaje, puntajeActual);
+		puntajesMaximos.remove(5);
+		try {
+		escribirPuntajes();
+		} catch(IOException e) {
+			System.out.println("Problema al escribir archivo highscores.dat");
+		}
 	}
 
 	
@@ -239,42 +256,47 @@ public class Model{
 	}
 	
 	//PRIVATE
-	private ArrayList<Puntaje> cargarPuntajes(){
+	private ArrayList<Puntaje> cargarPuntajes() throws IOException  {
+		File highscores = new File(Paths.get(Constantes.PATHPUNTAJES).toAbsolutePath().toString());
+		ObjectInputStream lectorObjetos = null;
 		try {
-			FileInputStream file = new FileInputStream(
-					new File(getClass().getResource(Constantes.PATHSAVES + "save.dat").toURI()));
-			ObjectInputStream lectorObjetos = new ObjectInputStream(file);
-			Puntaje pun = (Puntaje) lectorObjetos.readObject();
+			FileInputStream file = new FileInputStream(highscores);
+			lectorObjetos = new ObjectInputStream(file);
+			Puntaje pun;
 			for (int i = 0; i < 5; i++) {
-				puntajesMaximos.add((Puntaje) pun);
 				pun = (Puntaje) lectorObjetos.readObject();
+				puntajesMaximos.add(pun);
 			}
-			lectorObjetos.close();
-		} catch (Exception e) {
-		}
-		if (puntajesMaximos.isEmpty()) {
-			crearPuntajes();
-			escribirPuntajes(puntajesMaximos);
+		} catch (EOFException e) {
+			// Archivo alterado
+			for (int i = 0; i < 5; i++)	puntajesMaximos.add(new Puntaje());
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			//Archivo inexistente
+			for (int i = 0; i < 5; i++)	puntajesMaximos.add(new Puntaje());
+		} finally {
+			if (lectorObjetos != null) lectorObjetos.close();
+			escribirPuntajes();
 		}
 		return null;
 	}
-	private void escribirPuntajes(ArrayList<Puntaje> puntajesMaximos2) {
+	
+	private void escribirPuntajes() throws IOException {
+		Path path = Paths.get(Constantes.PATHPUNTAJES);
+		Files.deleteIfExists(path);
+		File highscores = new File(path.toAbsolutePath().toString());
+		ObjectOutputStream grabadorObjetos = null;
 		try {
-			FileOutputStream file = new FileOutputStream(new File(getClass().getResource(Constantes.PATHSAVES + "saves.dat").toURI()));
-			ObjectOutputStream grabadorObjetos = new ObjectOutputStream(file);
-			for (Puntaje pun : puntajesMaximos2) {
-				grabadorObjetos.writeObject(pun);
+			highscores.createNewFile();
+			FileOutputStream file = new FileOutputStream(highscores);
+			grabadorObjetos = new ObjectOutputStream(file);
+			for (Puntaje actual : puntajesMaximos) {
+				grabadorObjetos.writeObject(actual);
 			}
 			grabadorObjetos.close();
-		} catch (Exception e) {}
+		} catch (IOException e) {
+			throw e;
+		}
 	}
-	private void crearPuntajes() {
-		puntajesMaximos.add(new Puntaje(12300, "Pepito"));
-		puntajesMaximos.add(new Puntaje(9700, "Juanita"));
-		puntajesMaximos.add(new Puntaje(5500, "Ramon"));
-		puntajesMaximos.add(new Puntaje(3600, "Pedro"));
-		puntajesMaximos.add(new Puntaje(1000, "Pedro"));
-	}
-
-
 }

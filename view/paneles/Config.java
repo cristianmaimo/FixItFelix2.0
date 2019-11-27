@@ -1,4 +1,4 @@
-package view;
+package view.paneles;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 
 import controler.Controler;
 import model.Model;
+import view.View;
 
 public class Config extends JPanel{
 	private JLabel background;
