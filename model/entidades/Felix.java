@@ -1,9 +1,15 @@
 package model.entidades;
 
 import controler.Constantes;
-import model.Model;
-import model.edificio.*;
-import model.utilidades.*;
+import model.edificio.Edificio;
+import model.utilidades.ChoqueLadrilloException;
+import model.utilidades.ChoquePajaroException;
+import model.utilidades.Direccion;
+import model.utilidades.FinDeJuegoException;
+import model.utilidades.FinDeSeccionException;
+import model.utilidades.Hitbox;
+import model.utilidades.Posicion;
+
 
 /**
  * La clase Felix es un singleton para que las demás clases se puedan comunicar
@@ -226,6 +232,10 @@ public class Felix extends Entidad {
 			else nombre += "Muriendo4";
 			break;
 		case COMIENDO:
+			if (frame < 7) nombre += "Comiendo0";
+			else if ((frame >= 7) && (frame < 14)) nombre += "Comiendo1";
+			else if ((frame >= 14) && (frame < 21)) nombre += "Comiendo2";
+			else nombre += "Comiendo3";
 			break;
 		}
 		

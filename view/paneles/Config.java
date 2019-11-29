@@ -10,13 +10,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import controler.Controler;
-import model.Model;
 import view.View;
 
 public class Config extends JPanel{
 	private JLabel background;
 	private JComboBox<String> nivel;
-	private JButton close;
 	private JButton ok;
 	private String[] niveles = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
 	

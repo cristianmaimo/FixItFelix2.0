@@ -6,18 +6,14 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.NotSerializableException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.URI;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 import controler.Constantes;
 import model.edificio.Edificio;
@@ -97,8 +93,8 @@ public class Model{
 	 */
 	public void actualizar()throws FinDeSeccionException, ChoquePajaroException, ChoqueLadrilloException, FinDeJuegoException{
 		Ralph.getRalph().actualizar();
-		pastel.actualizar();
 		Felix.getFelix().actualizar();
+		pastel.actualizar();
 		try {
 			actualizarProyectiles();
 			} catch (ChoquePajaroException e) {
@@ -257,6 +253,9 @@ public class Model{
 	public int getPuntajeActual() {
 		return puntajeActual.getPuntaje();
 	}
+	public Pastel getPastel() {
+		return pastel;
+	}
 	
 	//PRIVATE
 	private ArrayList<Puntaje> cargarPuntajes() throws IOException  {
@@ -302,4 +301,6 @@ public class Model{
 			throw e;
 		}
 	}
+
+
 }

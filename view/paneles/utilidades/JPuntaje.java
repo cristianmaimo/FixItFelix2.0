@@ -1,7 +1,6 @@
 package view.paneles.utilidades;
 
 import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;

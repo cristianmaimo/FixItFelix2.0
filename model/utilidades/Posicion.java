@@ -15,8 +15,8 @@ public class Posicion {
 	
 	//CONSTRUCTORS
 	public Posicion () {
-		coordenadaX = -1;
-		coordenadaY = -1;
+		coordenadaX = -100;
+		coordenadaY = -100;
 	}
 	public Posicion (Posicion pos) {
 		if (pos != null){
@@ -24,8 +24,8 @@ public class Posicion {
 			this.coordenadaY = pos.coordenadaY;
 		}
 		else {
-			coordenadaX = -1;
-			coordenadaY = -1;
+			coordenadaX = -100;
+			coordenadaY = -100;
 		}
 	}
 	public Posicion (int coordenadaX, int coordenadaY) {

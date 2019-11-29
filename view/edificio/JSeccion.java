@@ -6,7 +6,6 @@ import java.util.Iterator;
 import javax.swing.JComponent;
 
 import controler.Constantes;
-import model.edificio.Edificio;
 import model.edificio.InfoVentana;
 
 class JSeccion extends JComponent {

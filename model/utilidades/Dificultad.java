@@ -14,7 +14,7 @@ public class Dificultad {
 	//public final int TIEMPOLIMITE;
 	
 	public Dificultad(){
-		VENTANASROTAS = 12;
+		VENTANASROTAS = 9999;
 		CHANCEGOLPEAR = 2;
 		VELOCIDADLADRILLOS = 2; // Pixeles por loop
 		VELOCIDADPAJAROS = 2; // Pixeles por loop

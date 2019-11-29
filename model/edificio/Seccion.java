@@ -134,29 +134,26 @@ class Seccion {
 	 * Recorre la coleccion de <kbd>ventanas</kbd> y devuelve la {@link Posicion}
 	 * de una ventana abierta (panel inferior en estado <kbd>TODOROTO</kbd>).<br>
 	 * En caso de haber mas de una, elije una aleatoria.<br>
-	 * En caso de no haber ninguna devuelve la Posicion (0,0).
+	 * En caso de no haber ninguna devuelve la Posicion (-100, -100).
 	 * 
-	 * @return Posicion de una ventana abierta, Posicion (0,0) de no haber.
+	 * @return Posicion de una ventana abierta, Posicion (-100, -100) de no haber.
 	 * @see Model#actualizarPastel()
 	 */
 	Posicion hayAbierta() {
 		Set<Posicion> setOfKeys = ventanas.keySet();
 		Iterator<Posicion> iterador = setOfKeys.iterator();
-		ArrayList<Posicion> tempArray = new ArrayList<Posicion>(0);
-		Posicion pos = null;
-		while (iterador.hasNext()) {
+		ArrayList<Posicion> tempArray = new ArrayList<Posicion>(15);
+		Posicion pos = new Posicion();
+		for (int i = 0; i < Constantes.CANTIDADVENTANAS; i++) {
 			pos = iterador.next();
-			if ((ventanas.get(pos).inferiorDespejado())) {
-				tempArray.add(new Posicion(pos));
+			if (ventanas.get(pos).inferiorDespejado()) {
+				tempArray.add(pos);
 			}
 		}
-		pos = new Posicion(-1,-1);
+		pos = new Posicion();
 		if (!(tempArray.isEmpty())) {
-			iterador = tempArray.iterator();
-			int iteraciones = randomizador.nextInt(tempArray.size());
-			for (int i = 0; i < iteraciones ; i++) {
-				pos = iterador.next();
-			}
+			int randomIndex = randomizador.nextInt(tempArray.size());
+				pos = tempArray.get(randomIndex);
 		}
 		return new Posicion(pos);
 	}

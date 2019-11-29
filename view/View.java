@@ -1,16 +1,13 @@
 package view;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.HashMap;
-
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
 import controler.Constantes;
 import view.paneles.Config;
 import view.paneles.MainMenu;
@@ -176,7 +173,7 @@ public class View extends JFrame{
 
 		for (int i = 0; i < 4; i++) {
 			temp = "felixReparando" + i + "I";
-			imagen = new ImageIcon(Constantes.PATHIMAGES + "felix" + temp + ".png");
+			imagen = new ImageIcon(Constantes.PATHIMAGES + "felix/" + temp + ".png");
 			imagenes.put(temp, imagen);
 		}
 

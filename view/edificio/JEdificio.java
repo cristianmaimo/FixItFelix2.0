@@ -9,7 +9,6 @@ import controler.Constantes;
 import model.Model;
 import model.edificio.Edificio;
 import model.edificio.InfoVentana;
-import model.utilidades.Posicion;
 import view.View;
 
 public class JEdificio extends JLabel{

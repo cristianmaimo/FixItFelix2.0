@@ -1,14 +1,16 @@
 package view.paneles;
 
 import java.awt.Color;
-import java.awt.*;
-import javax.swing.*;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import javax.swing.JPanel;
+
 import view.View;
-import view.edificio.*;
+import view.edificio.JEdificio;
 import view.entidades.JFelix;
+import view.entidades.JPastel;
 import view.entidades.JProyectil;
 import view.entidades.JRalph;
 import controler.Constantes;
@@ -20,14 +22,14 @@ public class PanelJuego extends JPanel {
 	private JFelix jfelix;
 	private JRalph jralph;
 	private ArrayList<JProyectil> jproyectiles;
-	private JLabel pastel;
+	private JPastel jpastel;
 	private JEdificio jedificio;
 
 
 	public PanelJuego(Dimension tamañoFrame) {
 		setLayout(null);
 		setBorder(null);
-//		setOpaque(false);
+		setOpaque(false);
 		setLocation(0,0);
 		setSize(tamañoFrame);
 		setBackground(Color.cyan);
@@ -41,13 +43,13 @@ public class PanelJuego extends JPanel {
 		jedificio = new JEdificio();
 		jfelix = new JFelix();
 		jralph = new JRalph();
-//		jpastel = new JPastel();
+		jpastel = new JPastel();
 		
 		add(header);
 		iniciarJProyectiles();
 		add(jfelix);
 		add(jralph);
-//		add(jpastel);
+		add(jpastel);
 		add(jedificio);
 
 	}
@@ -62,7 +64,7 @@ public class PanelJuego extends JPanel {
 	public void actualizar() {
 		header.actualizar();
 		actualizarProyectiles();
-//		jpastel.actualizar();
+		jpastel.actualizar();
 		jfelix.actualizar();
 		jralph.actualizar();
 		jedificio.actualizar();

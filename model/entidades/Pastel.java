@@ -1,9 +1,9 @@
 package model.entidades;
-import java.util.Random;
 
 import controler.Constantes;
 import model.edificio.Edificio;
-import model.utilidades.*;
+import model.utilidades.Posicion;
+
 /**
  * La clase Pastel describe los pasteles.
  * 
@@ -14,7 +14,6 @@ import model.utilidades.*;
 public class Pastel {
 	private Posicion posicion;
 	private EstadoPastel estado;
-	private Random randomizador;
 
 	//CONSTRUCTOR
 	/**
@@ -23,30 +22,27 @@ public class Pastel {
 	public Pastel() {
 		posicion = new Posicion();
 		estado = new EstadoPastel();
-		randomizador = new Random();
 	}
 	
 	//PUBLIC
 	public void actualizar() {
 		switch (estado.accion) {
 		case ADENTRO:
-			if ((estado.frame > Constantes.DELAYPASTEL) && (!Felix.getFelix().esInmune())) {
+			if (estado.frame > Constantes.DELAYPASTEL) {
 				estado.setAccion(AccionPastel.SALIENDO);
-			} else estado.frame++;
+			} else if (!Felix.getFelix().esInmune()) estado.frame++;
 			break;
 		case SALIENDO:
-			//El constructor default de posicion es -1,-1;
-			if (posicion.getCoordenadaX() != -1) {
-				estado.frame++;
+			//El constructor default de posicion es -100,-100;
+			if (posicion.getCoordenadaX() == -100) {
+				posicion = Edificio.getEdificio().abierta();
 			} else {
-				Posicion pos = Edificio.getEdificio().abierta();
-				if (pos.getCoordenadaX() != -1) {
-					posicion = pos;
-					if (randomizador.nextInt(101) < Constantes.CHANCEPASTEL);
-				}
+				if (estado.frame < 240)	estado.frame++;
+				else estado.setAccion(AccionPastel.AFUERA);
 			}
 			break;
 		case AFUERA:
+			if (estado.frame++ == 60) estado.frame = 0;
 			if (esAlcanzado()) {
 				Felix.getFelix().comer();
 				posicion = new Posicion();
@@ -60,8 +56,7 @@ public class Pastel {
 	 * El método esAlcanzado chequea si Felix está en la misma ventana que el pastel y si es así setea la inmunidad de felix y retorna true; caso contrario retorna false; 
 	 */
 	private boolean esAlcanzado() {
-		if (Felix.getFelix().getPosicion().aVentana() == posicion.aVentana()){
-
+		if (Felix.getFelix().getPosicion().aVentana().equals(posicion)){
 			return true;
 		}
 		return false;
@@ -75,6 +70,23 @@ public class Pastel {
 		this.posicion.copiar(posicion);
 	}
 	
+	public String getNombreImagen() {
+		String nombreImagen = "";
+		switch (estado.accion) {
+		case ADENTRO:
+			nombreImagen += "placeholder";
+			break;
+		case SALIENDO:
+			if (estado.frame < 120) nombreImagen = "nicelander0";
+			else nombreImagen += "nicelander1";
+			break;
+		case AFUERA:
+			if (estado.frame < 30) nombreImagen = "pastel0";
+			else nombreImagen += "pastel1";
+			break;
+		}
+		return nombreImagen;
+	}
 }
 
 class EstadoPastel {

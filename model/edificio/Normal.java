@@ -35,9 +35,8 @@ class Normal extends Ventana {
 	 */
 	@Override
 	boolean inferiorDespejado() {
-		if (paneles.get(0).getEstado() == EstadoPanel.TODOROTO)
-			return true;
-		return false;
+		if (paneles.get(0).getEstado() == EstadoPanel.TODOROTO) return true;
+		else return false;
 	}
 	
 	/**

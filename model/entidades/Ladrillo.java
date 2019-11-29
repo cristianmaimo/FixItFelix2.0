@@ -1,10 +1,10 @@
 package model.entidades;
-import model.Model;
-import model.edificio.Edificio;
-import model.utilidades.*;
 
 import java.util.Random;
 
+import model.edificio.Edificio;
+import model.utilidades.ChoqueLadrilloException;
+import model.utilidades.Posicion;
 import controler.Constantes;
 
 /**

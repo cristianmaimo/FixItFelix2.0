@@ -1,11 +1,7 @@
 package controler;
 
-import java.util.Collection;
-
-import model.entidades.Ralph;
 import model.utilidades.Hitbox;
 import model.utilidades.Posicion;
-import view.entidades.JProyectil;
 
 /**
  * Coleccion de <kbd>CONSTANES</kbd> de valores que afectan distintas dinamicas del juego.
@@ -68,8 +64,8 @@ public class Constantes {
 
 	
 	// Pastel
-	public static final int PASTELOFFSETX = (int)(ANCHOVENTANA / 2); // Pixeles
-	public static final int PASTELOFFSETY = (int)(ALTURAVENTANA * 0.7); // Pixeles
+	public static final int PASTELOFFSETX = 13; // Pixeles
+	public static final int PASTELOFFSETY = 38; // Pixeles
 	public static final int CHANCEPASTEL = 40; // Porcentaje
 	public static final int DELAYPASTEL = 480; // frames
 

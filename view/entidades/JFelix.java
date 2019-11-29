@@ -1,8 +1,5 @@
 package view.entidades;
 
-import java.util.HashMap;
-
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import controler.Constantes;
@@ -14,7 +11,7 @@ public class JFelix extends JLabel {
 	public JFelix() {
 		setLayout(null);
 		setBorder(null);
-//		setOpaque(true);
+		setOpaque(false);
 		setSize(70,68);
 		actualizar();
 	}

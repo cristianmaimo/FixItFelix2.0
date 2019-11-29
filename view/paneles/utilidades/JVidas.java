@@ -6,7 +6,6 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 
 import controler.Constantes;
-import model.Model;
 import model.entidades.Felix;
 import view.View;
 
