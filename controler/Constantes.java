@@ -13,8 +13,6 @@ import view.entidades.JProyectil;
  * 
  */
 public class Constantes {
-	public static final int PAUSALOOP = 300; // Milisegundos
-	
 	// Ventana
 	public static final int ANCHOVENTANA = 68; // Pixeles
 	public static final int ALTURAVENTANA = 112; // Pixeles
@@ -32,9 +30,10 @@ public class Constantes {
 	
 	// Edificio
 	public static final int OFFSETXEDIFICIO = 160;
+	public static final int ALTURAEDIFICIO = 1280;
 	
 	// Felix
-	public static final int VIDAS = 5;
+	public static final int VIDAS = 3;
 	public static final int FELIXOFFSETX = 0; // Pixeles
 	public static final int FELIXOFFSETY = 28; // Pixeles
 	public static final int FELIXOFFSETYPUERTA = 42; // Pixeles
@@ -75,15 +74,16 @@ public class Constantes {
 	public static final int DELAYPASTEL = 480; // frames
 
 	
-	//Frame
+	// Frame
+	public static final int HEADER = 30;
 	public static final int ANCHOFRAME = 740; // Pixeles
-	public static final int ALTURAFRAME = 465; // Pixeles
-	public static final int HEADER = 17;
+	public static final int ALTURAFRAME = 448 + Constantes.HEADER; // Pixeles
 	public static final int OFFSETXVISUAL = Constantes.OFFSETXEDIFICIO + Constantes.OFFSETXSECCION;
 	public static final int OFFSETYVISUAL = Constantes.ALTURAVENTANA + Constantes.HEADER;
 	
 	public static final String PATHIMAGES = "assets/images/";
 	public static final String PATHPUNTAJES = "assets/highscores.dat";
+
 
 	
 

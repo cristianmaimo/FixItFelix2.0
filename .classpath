@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path=""/>
-	<classpathentry kind="lib" path="D:/Workspace/FixItFelixJr2.0/assets/libraries/commons-lang3-3.9.jar"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="D:/Workspace/FixItFelixJr2.0/assets/libraries/commons-lang3-3.9.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

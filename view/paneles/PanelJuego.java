@@ -13,11 +13,10 @@ import view.entidades.JProyectil;
 import view.entidades.JRalph;
 import controler.Constantes;
 import model.Model;
-import model.edificio.Edificio;
-import model.entidades.Felix;
 import model.entidades.Proyectil;
 
 public class PanelJuego extends JPanel {
+	private Header header;
 	private JFelix jfelix;
 	private JRalph jralph;
 	private ArrayList<JProyectil> jproyectiles;
@@ -28,21 +27,23 @@ public class PanelJuego extends JPanel {
 	public PanelJuego(Dimension tamañoFrame) {
 		setLayout(null);
 		setBorder(null);
-		setOpaque(false);
+//		setOpaque(false);
 		setLocation(0,0);
 		setSize(tamañoFrame);
-		setBackground(Color.black);
+		setBackground(Color.cyan);
 		initComponents();
 		setVisible(false);
 	}
 
 	private void initComponents() {
+		header = new Header();
 		jproyectiles = new ArrayList<JProyectil>(Constantes.CANTIDADPROYECTILES);
 		jedificio = new JEdificio();
 		jfelix = new JFelix();
 		jralph = new JRalph();
 //		jpastel = new JPastel();
 		
+		add(header);
 		iniciarJProyectiles();
 		add(jfelix);
 		add(jralph);
@@ -59,11 +60,11 @@ public class PanelJuego extends JPanel {
 	}
 
 	public void actualizar() {
-
-		jfelix.actualizar();
-		jralph.actualizar();
+		header.actualizar();
 		actualizarProyectiles();
 //		jpastel.actualizar();
+		jfelix.actualizar();
+		jralph.actualizar();
 		jedificio.actualizar();
 		repaint();
 

@@ -76,10 +76,19 @@ public class View extends JFrame{
 	}
 
 	private static void cargarImagenes(){
-		String temp;
+		imagenesMenu();
+		imagenesFelix();
+		imagenesVentana();
+		imagenesEntidades();
+		imagenesHeader();
+		// Edificio
+		imagenes.put("edificio", new ImageIcon(Constantes.PATHIMAGES + "edificio/edificio.png"));
+		//Placeholder
+		imagenes.put("placeholder", new ImageIcon(Constantes.PATHIMAGES + "placeholder.png"));
+	}
+	private static void imagenesMenu() {
 		ImageIcon imagen;
 		
-		//Menu
 		String[] menues = {"CerrarBt1", "CerrarBt2", "CloseBt", "CloseBt1", "CloseBt2", "CloseBtt2", "configBt1", "configBt2",
 							"Configuracionbg", "exitBt1", "exitBt2", "HowTo", "JugarBt1", "JugarBt2", "logo", "MasBt1", "MasBt2",
 							"OkBt1", "OkBt2", "rulesBt1", "rulesBt2", "Top5", "topBt1", "topBt2"};
@@ -87,54 +96,20 @@ public class View extends JFrame{
 			imagen = new ImageIcon(Constantes.PATHIMAGES + "mainmenu/" + actual + ".png");
 			imagenes.put(actual, imagen);
 		}
-			
-		// Felix
-		String[] estados = { "Comiendo", "Muriendo", "Reparando" };
-		for (String actual : estados) {
-			for (int i = 0; i < 4; i++) {
-				temp = "felix" + actual + i;
-				imagen = new ImageIcon(Constantes.PATHIMAGES + "felix/" + temp + ".png");
-				imagenes.put(temp, imagen);
-			}
-		}
-		imagenes.put("felixMuriendo4", new ImageIcon(Constantes.PATHIMAGES + "felix/felixMuriendo4.png"));
-
-		for (int i = 0; i < 4; i++) {
-			temp = "felixReparando" + i + "I";
-			imagen = new ImageIcon(Constantes.PATHIMAGES + "felix" + temp + ".png");
-			imagenes.put(temp, imagen);
-		}
-
-		imagenes.put("felixParado", new ImageIcon(Constantes.PATHIMAGES + "felix/felixParado.png"));
-		imagenes.put("felixParadoI", new ImageIcon(Constantes.PATHIMAGES + "felix/felixParadoI.png"));
-		imagenes.put("felixMoviendo", new ImageIcon(Constantes.PATHIMAGES + "felix/felixMoviendo.png"));
-		imagenes.put("felixMoviendoI", new ImageIcon(Constantes.PATHIMAGES + "felix/felixMoviendoI.png"));
-
-		// Edificio
-		imagenes.put("edificio", new ImageIcon(Constantes.PATHIMAGES + "edificio/edificio.png"));
-
-		// Ventanas
-		imagenes.put("ventanaNormal", new ImageIcon(Constantes.PATHIMAGES + "edificio/ventanas/ventanaNormal.png"));
-		imagenes.put("ventanaHojaCerrada", new ImageIcon(Constantes.PATHIMAGES + "edificio/ventanas/ventanaHojaCerrada.png"));
-		imagenes.put("ventanaHojaIzquierda", new ImageIcon(Constantes.PATHIMAGES + "edificio/ventanas/ventanaHojaIzquierda.png"));
-		imagenes.put("ventanaHojaDerecha", new ImageIcon(Constantes.PATHIMAGES + "edificio/ventanas/ventanaHojaDerecha.png"));
-		imagenes.put("ventanaPuerta", new ImageIcon(Constantes.PATHIMAGES + "edificio/ventanas/ventanaPuerta.png"));
-		imagenes.put("ventanaPrimerPiso", new ImageIcon(Constantes.PATHIMAGES + "edificio/ventanas/ventanaPrimerPiso.png"));
-
-		imagenes.put("macetero", new ImageIcon(Constantes.PATHIMAGES + "edificio/ventanas/macetero.png"));
-		imagenes.put("moldura", new ImageIcon(Constantes.PATHIMAGES + "edificio/ventanas/moldura.png"));
+	}
+	private static void imagenesHeader() {
+		ImageIcon imagen;
 		
-		//Paneles
-		String[] paneles = { "NormalSano", "NormalSemiRoto0", "NormalSemiRoto1", "NormalSemiRoto2", "NormalSemiRoto3",
-				"NormalTodoRoto", "PrimerPisoSano", "PrimerPisoSemiRoto0", "PrimerPisoSemiRoto1", "PrimerPisoSemiRoto2",
-				"PrimerPisoSemiRoto3", "PrimerPisoTodoRoto", "PuertaSano", "PuertaSemiRoto0", "PuertaSemiRoto1",
-				"PuertaSemiRoto2", "PuertaSemiRoto3", "PuertaTodoRoto" };
-		for (String panel : paneles) {
-			temp = Constantes.PATHIMAGES + "edificio/ventanas/panel" + panel + ".png";
-			imagen = new ImageIcon(temp);
-			imagenes.put("panel" + panel, imagen);
-		}
-
+		imagenes.put("headerbg", new ImageIcon(Constantes.PATHIMAGES + "header/headerbg.png"));
+		imagenes.put("vida", new ImageIcon(Constantes.PATHIMAGES + "header/vida.png"));
+		
+		for (int i = 0; i <= 9; i++) {
+				imagen = new ImageIcon(Constantes.PATHIMAGES + "header/numeros/"+ i + ".png");
+				imagenes.put(Integer.toString(i), imagen);
+			}
+	}
+		
+	private static void imagenesEntidades() {
 		// Pastel
 		imagenes.put("pastel1", new ImageIcon(Constantes.PATHIMAGES + "pastel/pastel1.png"));
 		imagenes.put("pastel0", new ImageIcon(Constantes.PATHIMAGES + "pastel/pastel0.png"));
@@ -159,9 +134,56 @@ public class View extends JFrame{
 		imagenes.put("ralphGolpeando1", new ImageIcon(Constantes.PATHIMAGES + "ralph/ralphGolpeando1.png"));
 		imagenes.put("ralphGolpeando2", new ImageIcon(Constantes.PATHIMAGES + "ralph/ralphGolpeando2.png"));
 		imagenes.put("ralphGolpeando3", new ImageIcon(Constantes.PATHIMAGES + "ralph/ralphGolpeando3.png"));
+	}
+	private static void imagenesVentana() {
+		String temp;
+		ImageIcon imagen;
+		// Ventanas
+		imagenes.put("ventanaNormal", new ImageIcon(Constantes.PATHIMAGES + "edificio/ventanas/ventanaNormal.png"));
+		imagenes.put("ventanaHojaCerrada", new ImageIcon(Constantes.PATHIMAGES + "edificio/ventanas/ventanaHojaCerrada.png"));
+		imagenes.put("ventanaHojaIzquierda", new ImageIcon(Constantes.PATHIMAGES + "edificio/ventanas/ventanaHojaIzquierda.png"));
+		imagenes.put("ventanaHojaDerecha", new ImageIcon(Constantes.PATHIMAGES + "edificio/ventanas/ventanaHojaDerecha.png"));
+		imagenes.put("ventanaPuerta", new ImageIcon(Constantes.PATHIMAGES + "edificio/ventanas/ventanaPuerta.png"));
+		imagenes.put("ventanaPrimerPiso", new ImageIcon(Constantes.PATHIMAGES + "edificio/ventanas/ventanaPrimerPiso.png"));
+
+		imagenes.put("macetero", new ImageIcon(Constantes.PATHIMAGES + "edificio/ventanas/macetero.png"));
+		imagenes.put("moldura", new ImageIcon(Constantes.PATHIMAGES + "edificio/ventanas/moldura.png"));
 		
-		//Placeholder
-		imagenes.put("placeholder", new ImageIcon(Constantes.PATHIMAGES + "placeholder.png"));
+		//Paneles
+		String[] paneles = { "NormalSano", "NormalSemiRoto0", "NormalSemiRoto1", "NormalSemiRoto2", "NormalSemiRoto3",
+				"NormalTodoRoto", "PrimerPisoSano", "PrimerPisoSemiRoto0", "PrimerPisoSemiRoto1", "PrimerPisoSemiRoto2",
+				"PrimerPisoSemiRoto3", "PrimerPisoTodoRoto", "PuertaSano", "PuertaSemiRoto0", "PuertaSemiRoto1",
+				"PuertaSemiRoto2", "PuertaSemiRoto3", "PuertaTodoRoto" };
+		for (String panel : paneles) {
+			temp = Constantes.PATHIMAGES + "edificio/ventanas/panel" + panel + ".png";
+			imagen = new ImageIcon(temp);
+			imagenes.put("panel" + panel, imagen);
+		}
+	}
+	
+	private static void imagenesFelix() {
+		String temp;
+		ImageIcon imagen;
+		String[] estados = { "Comiendo", "Muriendo", "Reparando" };
+		for (String actual : estados) {
+			for (int i = 0; i < 4; i++) {
+				temp = "felix" + actual + i;
+				imagen = new ImageIcon(Constantes.PATHIMAGES + "felix/" + temp + ".png");
+				imagenes.put(temp, imagen);
+			}
+		}
+		imagenes.put("felixMuriendo4", new ImageIcon(Constantes.PATHIMAGES + "felix/felixMuriendo4.png"));
+
+		for (int i = 0; i < 4; i++) {
+			temp = "felixReparando" + i + "I";
+			imagen = new ImageIcon(Constantes.PATHIMAGES + "felix" + temp + ".png");
+			imagenes.put(temp, imagen);
+		}
+
+		imagenes.put("felixParado", new ImageIcon(Constantes.PATHIMAGES + "felix/felixParado.png"));
+		imagenes.put("felixParadoI", new ImageIcon(Constantes.PATHIMAGES + "felix/felixParadoI.png"));
+		imagenes.put("felixMoviendo", new ImageIcon(Constantes.PATHIMAGES + "felix/felixMoviendo.png"));
+		imagenes.put("felixMoviendoI", new ImageIcon(Constantes.PATHIMAGES + "felix/felixMoviendoI.png"));
 	}
 	public void reiniciarPanelJuego() {
 		remove(panelJuego);

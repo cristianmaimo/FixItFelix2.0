@@ -5,13 +5,6 @@ import view.View;
 import java.awt.KeyboardFocusManager;
 
 import model.Model;
-import model.edificio.Edificio;
-import model.entidades.Felix;
-import model.utilidades.ChoqueLadrilloException;
-import model.utilidades.ChoquePajaroException;
-import model.utilidades.FinDeJuegoException;
-import model.utilidades.FinDeNivelException;
-import model.utilidades.FinDeSeccionException;
 
 public class Controler{
 	private static Controler instancia;

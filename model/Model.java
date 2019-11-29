@@ -93,18 +93,19 @@ public class Model{
 	 * @throws FinDeNivelException 
 	 * @throws ChoqueLadrilloException 
 	 * @throws ChoquePajaroException 
+	 * @throws FinDeJuegoException 
 	 */
-	public void actualizar()throws FinDeSeccionException, ChoquePajaroException, ChoqueLadrilloException{
+	public void actualizar()throws FinDeSeccionException, ChoquePajaroException, ChoqueLadrilloException, FinDeJuegoException{
 		Ralph.getRalph().actualizar();
 		pastel.actualizar();
-		try {
-		actualizarProyectiles();
-		} catch (ChoquePajaroException e) {
-			Felix.getFelix().colicion(false);
-		} catch (ChoqueLadrilloException e) {
-			Felix.getFelix().colicion(true);
-		}
 		Felix.getFelix().actualizar();
+		try {
+			actualizarProyectiles();
+			} catch (ChoquePajaroException e) {
+				Felix.getFelix().colicion(false);
+			} catch (ChoqueLadrilloException e) {
+				Felix.getFelix().colicion(true);
+			}
 	}
 	
 	/**
@@ -219,8 +220,7 @@ public class Model{
 					break;
 				}
 			}
-		}
-		else i = -1;
+		} else i = -1;
 		return i;
 	}
 
@@ -253,6 +253,9 @@ public class Model{
 		dificultadActual = new Dificultad(dificultadBase, nivelActual);
 		Edificio.nuevoNivel(dificultadActual);
 		View.getView().panelJuego.actualizarMarcos();
+	}
+	public int getPuntajeActual() {
+		return puntajeActual.getPuntaje();
 	}
 	
 	//PRIVATE

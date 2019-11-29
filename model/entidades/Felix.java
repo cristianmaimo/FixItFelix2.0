@@ -46,7 +46,7 @@ public class Felix extends Entidad {
 	public static Felix getFelix() {
 		return instancia;
 	}
-	public void actualizar() throws FinDeSeccionException, ChoqueLadrilloException, ChoquePajaroException{
+	public void actualizar() throws FinDeSeccionException, ChoqueLadrilloException, ChoquePajaroException, FinDeJuegoException{
 		if (inmune) {
 			if (tiempoInmune == 0) inmune = false;
 			else tiempoInmune--;
@@ -99,13 +99,6 @@ public class Felix extends Entidad {
 		}
 	}
 	
-	public boolean esInmune() {
-		return inmune;
-	}
-	public boolean estaOcupado() {
-		return ocupado;
-	}
-	
  	public void colicion(boolean reiniciarNivel){
 		estado.setAccion(AccionFelix.MURIENDO);
 		inmune = true;
@@ -114,39 +107,6 @@ public class Felix extends Entidad {
 	}
 	public void comer() {
 		estado.setAccion(AccionFelix.COMIENDO);
-	}
-	@Override
-	public String getNombreImagen() {
-		String nombre = "felix";
-		int frame = estado.frame;
-		switch (estado.accion){
-		case PARADO:
-			nombre += "Parado";
-			if (inmune) nombre += "I";
-			break;
-		case MOVIENDO:
-			nombre += "Moviendo";
-			if (inmune) nombre += "I";
-			break;
-		case REPARANDO:
-			if (frame < 7) nombre += "Reparando0";
-			else if ((frame >= 7) && (frame < 14)) nombre += "Reparando1";
-			else if ((frame >= 14) && (frame < 21)) nombre += "Reparando2";
-			else nombre += "Reparando3";
-			if (inmune) nombre += "I";
-			break;
-		case MURIENDO:
-			if (frame < 12) nombre += "Muriendo0";
-			else if ((frame >= 12) && (frame < 24)) nombre += "Muriendo1";
-			else if ((frame >= 24) && (frame < 36)) nombre += "Muriendo2";
-			else if ((frame >= 36) && (frame < 48)) nombre += "Muriendo3";
-			else nombre += "Muriendo4";
-			break;
-		case COMIENDO:
-			break;
-		}
-		
-		return nombre;
 	}
 	
 	// PRIVATE
@@ -196,11 +156,11 @@ public class Felix extends Entidad {
 			ocupado = false;
 		} else estado.frame++;
 	}
-	private void muriendo() throws ChoqueLadrilloException, ChoquePajaroException {
+	private void muriendo() throws ChoqueLadrilloException, ChoquePajaroException, FinDeJuegoException {
 		switch (estado.frame) {
 		case 0:
+			posicion = destino;
 			ocupado = true;
-			vidas--;
 			estado.frame++;
 			break;
 		case 60:
@@ -208,6 +168,7 @@ public class Felix extends Entidad {
 			ocupado = false;
 			inmune = false;
 			tiempoInmune = 0;
+			if (--vidas == 0) throw new FinDeJuegoException();
 			if (reiniciarNivel == true) throw new ChoqueLadrilloException();
 			else throw new ChoquePajaroException();
 		default:
@@ -230,8 +191,53 @@ public class Felix extends Entidad {
 			estado.frame++;
 			break;
 		
+		}
 	}
-}
+
+	// GETTERS Y SETTERS
+	public int getVidas() {
+		return vidas;
+	}
+	@Override
+	public String getNombreImagen() {
+		String nombre = "felix";
+		int frame = estado.frame;
+		switch (estado.accion){
+		case PARADO:
+			nombre += "Parado";
+			if (inmune) nombre += "I";
+			break;
+		case MOVIENDO:
+			nombre += "Moviendo";
+			if (inmune) nombre += "I";
+			break;
+		case REPARANDO:
+			if (frame < 7) nombre += "Reparando0";
+			else if ((frame >= 7) && (frame < 14)) nombre += "Reparando1";
+			else if ((frame >= 14) && (frame < 21)) nombre += "Reparando2";
+			else nombre += "Reparando3";
+			if (inmune) nombre += "I";
+			break;
+		case MURIENDO:
+			if (frame < 12) nombre += "Muriendo0";
+			else if ((frame >= 12) && (frame < 24)) nombre += "Muriendo1";
+			else if ((frame >= 24) && (frame < 36)) nombre += "Muriendo2";
+			else if ((frame >= 36) && (frame < 48)) nombre += "Muriendo3";
+			else nombre += "Muriendo4";
+			break;
+		case COMIENDO:
+			break;
+		}
+		
+		return nombre;
+	}
+	public boolean esInmune() {
+		return inmune;
+	}
+	public boolean estaOcupado() {
+		return ocupado;
+	}
+	
 }
 
 class EstadoFelix {

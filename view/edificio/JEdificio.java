@@ -20,12 +20,9 @@ public class JEdificio extends JLabel{
 		setLayout(null);
 		setBorder(null);
 		setOpaque(false);
-//		setLocation(Constantes.OFFSETXEDIFICIO, 0);
-//		setLocation(Constantes.OFFSETXEDIFICIO,  -450);
-		setLocation(Constantes.OFFSETXEDIFICIO, -815);
-//		setSize(420,1280);
+		setLocation(Constantes.OFFSETXEDIFICIO, -(Constantes.ALTURAEDIFICIO - Constantes.HEADER + Constantes.ALTURAVENTANA*4));
+
 		setSize(getPreferredSize());
-		
 		
 		jsecciones = new JSeccion[3];
 		for (int i = 0 ; i < Constantes.CANTIDADSECCIONES; i++) {
@@ -45,13 +42,13 @@ public class JEdificio extends JLabel{
 		int seccionActual = Edificio.getEdificio().getSeccionActual();
 		switch (seccionActual){
 		case 0:
-			setLocation(Constantes.OFFSETXEDIFICIO, -815);
+			setLocation(Constantes.OFFSETXEDIFICIO, -(Constantes.ALTURAEDIFICIO - Constantes.HEADER - Constantes.ALTURAVENTANA*4));
 			break;
 		case 1:
-			setLocation(Constantes.OFFSETXEDIFICIO, -479);
+			setLocation(Constantes.OFFSETXEDIFICIO, -(Constantes.ALTURAEDIFICIO - Constantes.HEADER - Constantes.ALTURAVENTANA*7));
 			break;
 		case 2:
-			setLocation(Constantes.OFFSETXEDIFICIO, -143);
+			setLocation(Constantes.OFFSETXEDIFICIO, -(Constantes.ALTURAEDIFICIO - Constantes.HEADER - Constantes.ALTURAVENTANA*10));
 			break;
 		}
 		ArrayList<InfoVentana> seccion = Edificio.getEdificio().infoSeccion(seccionActual);

@@ -56,6 +56,8 @@ public class MainThread extends Thread {
 			View.getView().panelJuego.actualizarMarcos();
 		} catch (FinDeSeccionException e) {
 			estado.setEscena(Escena.SUBIENDO);
+		} catch (FinDeJuegoException e) {
+			estado.setEscena(Escena.TERMINANDO);
 		}
 		try {
 			Thread.sleep(16, 666666); // 60FPS
