@@ -10,10 +10,10 @@ public class Controler{
 	private static Controler instancia;
 	private KeyboardFocusManager teclado;
 
-	
 	private MainThread mainThread;
 	private boolean threadIniciado;
 	private int nivelInicial;
+	private int indexPuntaje;
 
 	//MAIN
 	public static void main (String args[]) {
@@ -68,13 +68,30 @@ public class Controler{
 	public void backToMenu() {
 		View.getView().mainMenu.setVisible(true);
 	}
+	
+	public void verificarPuntaje() {
+		indexPuntaje = Model.getModel().verificarPuntaje();
+		if (indexPuntaje != -1) {
+			View.getView().panelJuego.perdirNombre();
+		} else 	backToMenu();
+	}
+
+	public void actualizarPuntajes(String nuevoNombre) {
+		Model.getModel().setNombre(nuevoNombre);
+		Model.getModel().actualizarPuntajes(indexPuntaje);
+		View.getView().top5.actualizarPuntajes();
+		View.getView().repaint();
+		backToMenu();
+	}
 
 	public void reiniciar() {
+		backToMenu();
 		Model.iniciarModel();
 		View.getView().reiniciarPanelJuego();
 	}
-
 	public void setNivelInicial(int nivelInicial) {
 		this.nivelInicial = nivelInicial;
 	}
+
+	
 }

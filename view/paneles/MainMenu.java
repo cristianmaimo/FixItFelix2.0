@@ -1,7 +1,6 @@
 package view.paneles;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -9,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import controler.Constantes;
 import controler.Controler;
 import view.View;
 
@@ -20,10 +20,10 @@ public class MainMenu extends JPanel{
 	private JButton exit;
 	private JLabel logo;
 	
-	public MainMenu(Dimension tamañoFrame) {
+	public MainMenu() {
 		setLayout(null);
 		setLocation(0,0);
-		setSize(tamañoFrame);
+		setSize(Constantes.TAMAÑOFRAME);
 		setBackground(Color.black);
 		initComponents();
 		paintComponents(getGraphics());
@@ -41,7 +41,7 @@ public class MainMenu extends JPanel{
 	private void initLogo() {
 		logo = new JLabel(View.getImagenes().get("logo"));
 		logo.setBorder(null);
-		logo.setLocation(38, 20);
+		logo.setLocation(Constantes.ANCHOFRAME/2 - 172, 20);
 		logo.setSize(logo.getPreferredSize());
 		add(logo);
 	}
@@ -52,7 +52,7 @@ public class MainMenu extends JPanel{
 		exit.setBorderPainted(false);
 		exit.setOpaque(false);
 		exit.setContentAreaFilled(false);
-		exit.setLocation(382 , 404);
+		exit.setLocation(Constantes.ANCHOFRAME - exit.getPreferredSize().width , Constantes.ALTURAFRAME - exit.getPreferredSize().height);
 		exit.setSize(exit.getPreferredSize());
 		
 		exit.addActionListener(new ActionListener() {
@@ -70,7 +70,7 @@ public class MainMenu extends JPanel{
 		config.setBorderPainted(false);
 		config.setOpaque(false);
 		config.setContentAreaFilled(false);
-		config.setLocation(195, 371);
+		config.setLocation(550, 330);
 		config.setSize(config.getPreferredSize());
 		
 		config.addActionListener(new ActionListener() {
@@ -89,7 +89,7 @@ public class MainMenu extends JPanel{
 		top5.setBorderPainted(false);
 		top5.setOpaque(false);
 		top5.setContentAreaFilled(false);
-		top5.setLocation(258, 290);
+		top5.setLocation(30, 380);
 		top5.setSize(top5.getPreferredSize());
 		top5.addActionListener(new ActionListener() {
 			@Override
@@ -108,7 +108,7 @@ public class MainMenu extends JPanel{
 		rules.setBorderPainted(false);
 		rules.setOpaque(false);
 		rules.setContentAreaFilled(false);
-		rules.setLocation(45, 290);
+		rules.setLocation(30, 290);
 		rules.setSize(rules.getPreferredSize());
 		
 		rules.addActionListener(new ActionListener() {
@@ -127,7 +127,7 @@ public class MainMenu extends JPanel{
 		jugar.setBorderPainted(false);
 		jugar.setOpaque(false);
 		jugar.setContentAreaFilled(false);
-		jugar.setLocation(111, 200);
+		jugar.setLocation(Constantes.ANCHOFRAME/2 - 83, 330);
 		jugar.setSize(jugar.getPreferredSize());
 		
 		jugar.addActionListener(new ActionListener() {

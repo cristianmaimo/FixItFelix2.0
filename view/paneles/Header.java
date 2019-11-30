@@ -6,30 +6,36 @@ import javax.swing.JLabel;
 
 import controler.Constantes;
 import view.View;
+import view.paneles.utilidades.JNivel;
 import view.paneles.utilidades.JPuntaje;
 import view.paneles.utilidades.JVidas;
 
 public class Header extends JLabel {
 	private JPuntaje puntaje;
 	private JVidas vidas;
+	private JNivel nivel;
 	
 	
 	Header(){
 		setIcon(View.getImagenes().get("headerbg"));
 		setLayout(null);
 		setBorder(null);
-		setOpaque(false);;
+		setOpaque(false);
 		setSize(Constantes.ANCHOFRAME, Constantes.HEADER);
 		setLocation(0,0);
 		
-		puntaje = new JPuntaje();
+		nivel = new JNivel();
+
 		vidas = new JVidas();
+		puntaje = new JPuntaje();
 		
-		add(puntaje);
 		add(vidas);
+		add(nivel);
+		add(puntaje);
 	}
 	
 	void actualizar(){
+		nivel.actualizar();
 		puntaje.actualizar();
 		vidas.actualizar();
 	}

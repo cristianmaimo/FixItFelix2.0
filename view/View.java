@@ -1,8 +1,6 @@
 package view;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.util.HashMap;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -17,8 +15,6 @@ import view.paneles.TopScores;
 
 public class View extends JFrame{
 	private static View instancia;
-	private Dimension tamañoPantalla;
-	private Dimension tamañoFrame;
 	private static HashMap<String, ImageIcon> imagenes;
 	
 	public JPanel mainPanel;
@@ -44,24 +40,21 @@ public class View extends JFrame{
 	}
 	
 	private View() {
-		tamañoPantalla = Toolkit.getDefaultToolkit().getScreenSize();
-		tamañoFrame = new Dimension(Constantes.ANCHOFRAME, Constantes.ALTURAFRAME);
 		setTitle("Fix it Felix jr.");
 		setLayout(null);
-		setLocation((tamañoPantalla.width/2) - (Constantes.ANCHOFRAME/2), 0);
 		setResizable(false);
 		getContentPane().setBackground(Color.black);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setAlwaysOnTop(true);
 		getContentPane().setLayout(null);
 		getContentPane().setLocation(0, 0);
-		getContentPane().setPreferredSize(tamañoFrame);
+		getContentPane().setPreferredSize(Constantes.TAMAÑOFRAME);
 
-		mainMenu = new MainMenu(tamañoFrame);
-		config = new Config(tamañoFrame);
-		reglas = new Reglas(tamañoFrame);
-		top5 = new TopScores(tamañoFrame);
-		panelJuego = new PanelJuego(tamañoFrame);
+		mainMenu = new MainMenu();
+		config = new Config();
+		reglas = new Reglas();
+		top5 = new TopScores();
+		panelJuego = new PanelJuego();
 		
 		getContentPane().add(mainMenu);
 		getContentPane().add(config);
@@ -70,6 +63,7 @@ public class View extends JFrame{
 		getContentPane().add(panelJuego);
 		setVisible(true);
 		pack();
+		setLocationRelativeTo(null);
 	}
 
 	private static void cargarImagenes(){
@@ -80,15 +74,17 @@ public class View extends JFrame{
 		imagenesHeader();
 		// Edificio
 		imagenes.put("edificio", new ImageIcon(Constantes.PATHIMAGES + "edificio/edificio.png"));
-		//Placeholder
+		// Placeholder
 		imagenes.put("placeholder", new ImageIcon(Constantes.PATHIMAGES + "placeholder.png"));
+		// Backgorund
+		imagenes.put("background", new ImageIcon(Constantes.PATHIMAGES + "background.png"));
 	}
 	private static void imagenesMenu() {
 		ImageIcon imagen;
 		
 		String[] menues = {"CerrarBt1", "CerrarBt2", "CloseBt", "CloseBt1", "CloseBt2", "CloseBtt2", "configBt1", "configBt2",
 							"Configuracionbg", "exitBt1", "exitBt2", "HowTo", "JugarBt1", "JugarBt2", "logo", "MasBt1", "MasBt2",
-							"OkBt1", "OkBt2", "rulesBt1", "rulesBt2", "Top5", "topBt1", "topBt2"};
+							"OkBt1", "OkBt2", "rulesBt1", "rulesBt2", "Top5", "topBt1", "topBt2", "victoria", "derrota", "newScore"};
 		for (String actual : menues) {
 			imagen = new ImageIcon(Constantes.PATHIMAGES + "mainmenu/" + actual + ".png");
 			imagenes.put(actual, imagen);
@@ -184,7 +180,7 @@ public class View extends JFrame{
 	}
 	public void reiniciarPanelJuego() {
 		remove(panelJuego);
-		panelJuego = new PanelJuego(tamañoFrame);
+		panelJuego = new PanelJuego();
 		add(panelJuego);
 	}
 }

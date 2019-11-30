@@ -1,6 +1,7 @@
 package model.entidades;
 
 import controler.Constantes;
+import model.Model;
 import model.edificio.Edificio;
 import model.utilidades.ChoqueLadrilloException;
 import model.utilidades.ChoquePajaroException;
@@ -84,7 +85,7 @@ public class Felix extends Entidad {
 	 * @throws FinDeNivelException
 	 */
 	public void reparar() {
-		if (!ocupado) {
+		if (!ocupado && (!posicion.aVentana().equals(Model.getModel().getPastel().getPosicion()))){
 			estado.setAccion(AccionFelix.REPARANDO);
 			ocupado = true;
 		}

@@ -169,7 +169,7 @@ public class Model{
 	 */
 	public void avanzarNivel() throws FinDeJuegoException {
 		nivelActual++;
-		if (nivelActual <= 1) {
+		if (nivelActual <= 10) {
 			dificultadActual = new Dificultad(dificultadBase, nivelActual);
 			Edificio.nuevoNivel(dificultadActual);
 			reiniciarEntidades();
@@ -253,8 +253,14 @@ public class Model{
 	public int getPuntajeActual() {
 		return puntajeActual.getPuntaje();
 	}
+	public void setNombre(String nuevoNombre) {
+		puntajeActual.setNombre(nuevoNombre);
+	}
 	public Pastel getPastel() {
 		return pastel;
+	}
+	public int getNivelActual() {
+		return nivelActual;
 	}
 	
 	//PRIVATE
@@ -301,6 +307,4 @@ public class Model{
 			throw e;
 		}
 	}
-
-
 }

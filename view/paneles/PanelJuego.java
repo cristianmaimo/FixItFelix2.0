@@ -1,10 +1,9 @@
 package view.paneles;
 
-import java.awt.Color;
-import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import view.View;
@@ -13,6 +12,8 @@ import view.entidades.JFelix;
 import view.entidades.JPastel;
 import view.entidades.JProyectil;
 import view.entidades.JRalph;
+import view.paneles.utilidades.FinDeJuego;
+import view.paneles.utilidades.PedirNombre;
 import controler.Constantes;
 import model.Model;
 import model.entidades.Proyectil;
@@ -24,20 +25,25 @@ public class PanelJuego extends JPanel {
 	private ArrayList<JProyectil> jproyectiles;
 	private JPastel jpastel;
 	private JEdificio jedificio;
+	private JLabel background;
+	
+	private FinDeJuego finDeJuego;
+	private PedirNombre pedirNombre;
+	private String nombreJugador;
 
-
-	public PanelJuego(Dimension tamañoFrame) {
+	public PanelJuego() {
 		setLayout(null);
 		setBorder(null);
 		setOpaque(false);
 		setLocation(0,0);
-		setSize(tamañoFrame);
-		setBackground(Color.cyan);
+		setSize(Constantes.TAMAÑOFRAME);
 		initComponents();
 		setVisible(false);
 	}
 
 	private void initComponents() {
+		finDeJuego = new FinDeJuego();
+		pedirNombre = new PedirNombre();
 		header = new Header();
 		jproyectiles = new ArrayList<JProyectil>(Constantes.CANTIDADPROYECTILES);
 		jedificio = new JEdificio();
@@ -45,13 +51,23 @@ public class PanelJuego extends JPanel {
 		jralph = new JRalph();
 		jpastel = new JPastel();
 		
+		background = new JLabel();
+		background.setIcon(View.getImagenes().get("background"));
+		background.setLayout(null);
+		background.setBorder(null);
+		background.setOpaque(false);
+		background.setSize(getPreferredSize());
+		background.setLocation(0, -(Constantes.ALTURAEDIFICIO - Constantes.HEADER - Constantes.ALTURAVENTANA*4));
+		
+		add(finDeJuego);
+		add(pedirNombre);
 		add(header);
 		iniciarJProyectiles();
 		add(jfelix);
 		add(jralph);
 		add(jpastel);
 		add(jedificio);
-
+		add(background);
 	}
 
 	private void iniciarJProyectiles() {
@@ -69,7 +85,6 @@ public class PanelJuego extends JPanel {
 		jralph.actualizar();
 		jedificio.actualizar();
 		repaint();
-
 	}
 
 	private void actualizarProyectiles() {
@@ -93,5 +108,15 @@ public class PanelJuego extends JPanel {
 	
 	public void actualizarMarcos() {
 		jedificio.actualizarMarcos();
+	}
+	
+	public void finDeJuego() {
+		if(Model.getModel().getNivelActual() > 10) finDeJuego.setIcon(View.getImagenes().get("victoria"));
+		finDeJuego.setVisible(true);
+	}
+
+	public void perdirNombre() {
+		finDeJuego.setVisible(false);
+		pedirNombre.setVisible(true);
 	}
 }

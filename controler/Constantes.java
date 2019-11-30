@@ -1,5 +1,7 @@
 package controler;
 
+import java.awt.Dimension;
+
 import model.utilidades.Hitbox;
 import model.utilidades.Posicion;
 
@@ -21,15 +23,13 @@ public class Constantes {
 	public static final int CANTIDADSECCIONES = 3;
 	public static final int ANCHOSECCION = ANCHOVENTANA * CANTIDADCOLUMNAS; // Pixeles
 	public static final int ALTURASECCION = ALTURAVENTANA * CANTIDADFILAS; // Pixeles
-	public static final int OFFSETXSECCION = 40;
 	public static final int OFFSETYSECCION = 272; // Techo
 	
 	// Edificio
-	public static final int OFFSETXEDIFICIO = 160;
 	public static final int ALTURAEDIFICIO = 1280;
 	
 	// Felix
-	public static final int VIDAS = 3;
+	public static final int VIDAS = 1;
 	public static final int FELIXOFFSETX = 0; // Pixeles
 	public static final int FELIXOFFSETY = 28; // Pixeles
 	public static final int FELIXOFFSETYPUERTA = 42; // Pixeles
@@ -61,7 +61,6 @@ public class Constantes {
 	public static final int PAJAROFRAMES = 20;
 	public static final int PAJAROOFFSET = 37; //Pixeles
 
-
 	
 	// Pastel
 	public static final int PASTELOFFSETX = 13; // Pixeles
@@ -74,13 +73,10 @@ public class Constantes {
 	public static final int HEADER = 30;
 	public static final int ANCHOFRAME = 740; // Pixeles
 	public static final int ALTURAFRAME = 448 + Constantes.HEADER; // Pixeles
-	public static final int OFFSETXVISUAL = Constantes.OFFSETXEDIFICIO + Constantes.OFFSETXSECCION;
+	public static final Dimension TAMAÑOFRAME = new Dimension(Constantes.ANCHOFRAME, Constantes.ALTURAFRAME);
+	public static final int OFFSETXVISUAL = 200;
 	public static final int OFFSETYVISUAL = Constantes.ALTURAVENTANA + Constantes.HEADER;
 	
 	public static final String PATHIMAGES = "assets/images/";
 	public static final String PATHPUNTAJES = "assets/highscores.dat";
-
-
-	
-
 }

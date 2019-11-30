@@ -90,17 +90,10 @@ public class MainThread extends Thread {
 	}
 
 	private void terminando() {
-		View.getView().panelJuego.setVisible(false);
-		int indexPuntaje = Model.getModel().verificarPuntaje();
-		if (indexPuntaje != -1) {
-			//Pedir nombre y actualizarlo en modelo;
-			Model.getModel().actualizarPuntajes(indexPuntaje);
-			View.getView().top5.actualizarPuntajes();
-		}
-		Controler.getControler().backToMenu();
-		Controler.getControler().reiniciar();
-		estado.setEscena(Escena.REINICIANDO);
+		View.getView().panelJuego.finDeJuego();
+		setEscena(Escena.REINICIANDO);
 	}
+	
 	public void setEscena(Escena escena) {
 		estado.setEscena(escena);	
 	}

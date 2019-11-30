@@ -15,22 +15,21 @@ public class JEdificio extends JLabel{
 	JSeccion[] jsecciones;
 	
 	public JEdificio() {
-		super(View.getImagenes().get("edificio"));
+		setIcon(View.getImagenes().get("edificio"));
 		setLayout(null);
 		setBorder(null);
 		setOpaque(false);
-		setLocation(Constantes.OFFSETXEDIFICIO, -(Constantes.ALTURAEDIFICIO - Constantes.HEADER + Constantes.ALTURAVENTANA*4));
-
 		setSize(getPreferredSize());
+		setLocation(0, -(Constantes.ALTURAEDIFICIO - Constantes.HEADER - Constantes.ALTURAVENTANA*4));
 		
 		jsecciones = new JSeccion[3];
 		for (int i = 0 ; i < Constantes.CANTIDADSECCIONES; i++) {
 			jsecciones[i] = new JSeccion(Model.getModel().infoSeccion(i));
 			add(jsecciones[i]);
 		}
-		jsecciones[0].setLocation(Constantes.OFFSETXSECCION, Constantes.OFFSETYSECCION + (Constantes.ALTURASECCION * 2));
-		jsecciones[1].setLocation(Constantes.OFFSETXSECCION, Constantes.OFFSETYSECCION + Constantes.ALTURASECCION);
-		jsecciones[2].setLocation(Constantes.OFFSETXSECCION, Constantes.OFFSETYSECCION);
+		jsecciones[0].setLocation(Constantes.OFFSETXVISUAL, Constantes.OFFSETYSECCION + (Constantes.ALTURASECCION * 2));
+		jsecciones[1].setLocation(Constantes.OFFSETXVISUAL, Constantes.OFFSETYSECCION + Constantes.ALTURASECCION);
+		jsecciones[2].setLocation(Constantes.OFFSETXVISUAL, Constantes.OFFSETYSECCION);
 	}
 
 	public Container getSeccion(int seccionActual) {
@@ -41,13 +40,13 @@ public class JEdificio extends JLabel{
 		int seccionActual = Edificio.getEdificio().getSeccionActual();
 		switch (seccionActual){
 		case 0:
-			setLocation(Constantes.OFFSETXEDIFICIO, -(Constantes.ALTURAEDIFICIO - Constantes.HEADER - Constantes.ALTURAVENTANA*4));
+			setLocation(0, -(Constantes.ALTURAEDIFICIO - Constantes.HEADER - Constantes.ALTURAVENTANA*4));
 			break;
 		case 1:
-			setLocation(Constantes.OFFSETXEDIFICIO, -(Constantes.ALTURAEDIFICIO - Constantes.HEADER - Constantes.ALTURAVENTANA*7));
+			setLocation(0, -(Constantes.ALTURAEDIFICIO - Constantes.HEADER - Constantes.ALTURAVENTANA*7));
 			break;
 		case 2:
-			setLocation(Constantes.OFFSETXEDIFICIO, -(Constantes.ALTURAEDIFICIO - Constantes.HEADER - Constantes.ALTURAVENTANA*10));
+			setLocation(0, -(Constantes.ALTURAEDIFICIO - Constantes.HEADER - Constantes.ALTURAVENTANA*10));
 			break;
 		}
 		ArrayList<InfoVentana> seccion = Edificio.getEdificio().infoSeccion(seccionActual);

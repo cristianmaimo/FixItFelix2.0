@@ -18,7 +18,7 @@ public class Puntaje implements Serializable{
 
 	public Puntaje() {
 		puntaje = -1;
-		nombre = "";
+		nombre = " ";
 	}
 	public Puntaje(int puntaje, String nombre) {
 		this.puntaje = puntaje;
