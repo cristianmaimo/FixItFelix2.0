@@ -29,7 +29,6 @@ public class PanelJuego extends JPanel {
 	
 	private FinDeJuego finDeJuego;
 	private PedirNombre pedirNombre;
-	private String nombreJugador;
 
 	public PanelJuego() {
 		setLayout(null);

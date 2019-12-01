@@ -18,8 +18,20 @@ import java.util.Random;
 import controler.Constantes;
 import model.edificio.Edificio;
 import model.edificio.InfoVentana;
-import model.entidades.*;
-import model.utilidades.*;
+import model.entidades.Felix;
+import model.entidades.Ladrillo;
+import model.entidades.Pajaro;
+import model.entidades.Pastel;
+import model.entidades.Proyectil;
+import model.entidades.Ralph;
+import model.utilidades.ChoqueLadrilloException;
+import model.utilidades.ChoquePajaroException;
+import model.utilidades.Dificultad;
+import model.utilidades.FinDeJuegoException;
+import model.utilidades.FinDeSeccionException;
+import model.utilidades.Posicion;
+import model.utilidades.Puntaje;
+import model.utilidades.Temporizador;
 import view.View;
 
 /**
@@ -41,6 +53,8 @@ public class Model{
 	private int nivelActual;
 	private ArrayList<Proyectil> proyectiles;
 	private Pastel pastel;
+	private Temporizador temporizador;
+	
 	private Random randomizador = new Random();
 	
 	//CONSTRUCTOR
@@ -66,6 +80,7 @@ public class Model{
 		Felix.iniciarFelix();
 		proyectiles = new ArrayList<Proyectil>(0);
 		pastel = new Pastel();
+		temporizador = new Temporizador(dificultadActual.TIEMPOLIMITE);
 	}	
 	
 	//PUBLIC
@@ -92,6 +107,7 @@ public class Model{
 	 * @throws FinDeJuegoException 
 	 */
 	public void actualizar()throws FinDeSeccionException, ChoquePajaroException, ChoqueLadrilloException, FinDeJuegoException{
+		temporizador.actualizar();
 		Ralph.getRalph().actualizar();
 		Felix.getFelix().actualizar();
 		pastel.actualizar();
@@ -112,8 +128,13 @@ public class Model{
 	 */
 	private void actualizarProyectiles() throws ChoquePajaroException, ChoqueLadrilloException {
 		Iterator<Proyectil> it = proyectiles.iterator();
-		for (int i = 0; i < proyectiles.size(); i++){
-			it.next().actualizar();
+		Proyectil actual;
+		while (it.hasNext()) {
+			actual = it.next();
+			actual.actualizar();
+			if (actual.getPosicion().getCoordenadaY() > Constantes.ALTURAVENTANA *3) {
+				it.remove();
+			}
 		}
 	}
 		
@@ -174,6 +195,7 @@ public class Model{
 			Edificio.nuevoNivel(dificultadActual);
 			reiniciarEntidades();
 			Ralph.getRalph().reiniciar();
+			temporizador = new Temporizador(dificultadActual.TIEMPOLIMITE);
 		}
 		else {
 			throw new FinDeJuegoException();
@@ -248,6 +270,7 @@ public class Model{
 		nivelActual = nivelInicial;
 		dificultadActual = new Dificultad(dificultadBase, nivelActual);
 		Edificio.nuevoNivel(dificultadActual);
+		temporizador = new Temporizador(dificultadActual.TIEMPOLIMITE);
 		View.getView().panelJuego.actualizarMarcos();
 	}
 	public int getPuntajeActual() {
@@ -262,7 +285,9 @@ public class Model{
 	public int getNivelActual() {
 		return nivelActual;
 	}
-	
+	public Temporizador getTemporizador() {
+		return temporizador;
+	}
 	//PRIVATE
 	private ArrayList<Puntaje> cargarPuntajes() throws IOException  {
 		File highscores = new File(Paths.get(Constantes.PATHPUNTAJES).toAbsolutePath().toString());

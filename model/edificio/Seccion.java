@@ -148,6 +148,7 @@ class Seccion {
 			pos = iterador.next();
 			if (ventanas.get(pos).inferiorDespejado()) {
 				tempArray.add(pos);
+				pos = new Posicion();
 			}
 		}
 		pos = new Posicion();

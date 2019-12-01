@@ -8,12 +8,14 @@ import controler.Constantes;
 import view.View;
 import view.paneles.utilidades.JNivel;
 import view.paneles.utilidades.JPuntaje;
+import view.paneles.utilidades.JTiempo;
 import view.paneles.utilidades.JVidas;
 
 public class Header extends JLabel {
 	private JPuntaje puntaje;
 	private JVidas vidas;
 	private JNivel nivel;
+	private JTiempo tiempo;
 	
 	
 	Header(){
@@ -24,20 +26,22 @@ public class Header extends JLabel {
 		setSize(Constantes.ANCHOFRAME, Constantes.HEADER);
 		setLocation(0,0);
 		
-		nivel = new JNivel();
-
+		tiempo = new JTiempo();
 		vidas = new JVidas();
+		nivel = new JNivel();
 		puntaje = new JPuntaje();
 		
+		add(tiempo);
 		add(vidas);
 		add(nivel);
 		add(puntaje);
 	}
 	
 	void actualizar(){
+		tiempo.actualizar();
+		vidas.actualizar();
 		nivel.actualizar();
 		puntaje.actualizar();
-		vidas.actualizar();
 	}
 
 	public static ArrayList<ImageIcon> numeroAImagenes(int numeros, int tamañoArray) {

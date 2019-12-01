@@ -73,7 +73,7 @@ public class Controler{
 		indexPuntaje = Model.getModel().verificarPuntaje();
 		if (indexPuntaje != -1) {
 			View.getView().panelJuego.perdirNombre();
-		} else 	backToMenu();
+		} else 	reiniciar();
 	}
 
 	public void actualizarPuntajes(String nuevoNombre) {
@@ -81,7 +81,9 @@ public class Controler{
 		Model.getModel().actualizarPuntajes(indexPuntaje);
 		View.getView().top5.actualizarPuntajes();
 		View.getView().repaint();
-		backToMenu();
+		reiniciar();
+		View.getView().top5.setVisible(true);
+		View.getView().mainMenu.setVisible(false);
 	}
 
 	public void reiniciar() {

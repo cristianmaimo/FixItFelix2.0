@@ -10,29 +10,28 @@ public class Dificultad {
 	public final int VELOCIDADPAJAROS; 
 	public final int CANTIDADOBSTACULOS;
 	public final int CANTIDADPAJAROS;
+	public final int TIEMPOLIMITE;
 	// Todavia no implementado
 	//public final int TIEMPOLIMITE;
 	
 	public Dificultad(){
-		VENTANASROTAS = 3;
-		CHANCEGOLPEAR = 2;
+		VENTANASROTAS = 12;
+		CHANCEGOLPEAR = 10;
 		VELOCIDADLADRILLOS = 2; // Pixeles por frame
 		VELOCIDADPAJAROS = 2; // Pixeles por frame
 		CANTIDADOBSTACULOS = 3; // Total de obstaculos por nivel
-		// Todavia no implementado
-		//TIEMPOLIMITE = 0;
 		CANTIDADPAJAROS = 1;
+		TIEMPOLIMITE = 330; //Segundos
 	}
 	
 	public Dificultad(Dificultad difBase, int nivel){
-		float modificador = 1 + (nivel-1 * 0.1f); //aumenta un 10% en cada nivel.
+		float modificador = 1 + ((nivel-1) * 0.1f); //aumenta un 10% en cada nivel.
 		VENTANASROTAS = Math.round(difBase.VENTANASROTAS * modificador);
 		CHANCEGOLPEAR = Math.round(difBase.CHANCEGOLPEAR * modificador);
 		VELOCIDADLADRILLOS = Math.round(difBase.VELOCIDADLADRILLOS * modificador);
 		VELOCIDADPAJAROS = Math.round(difBase.VELOCIDADPAJAROS * modificador);
 		CANTIDADOBSTACULOS = Math.round(difBase.CANTIDADOBSTACULOS * modificador);
-		// Todavia no implementado
-		// TIEMPOLIMITE = Math.round(difBase.TIEMPOLIMITE * modificador);
+		TIEMPOLIMITE = Math.round(difBase.TIEMPOLIMITE - ((difBase.TIEMPOLIMITE * modificador) - difBase.TIEMPOLIMITE));
 		switch (nivel) {
 		case 4:
 		case 5:

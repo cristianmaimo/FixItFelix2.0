@@ -25,7 +25,7 @@ public class JPastel extends JLabel{
 			int x = posActual.getCoordenadaX() + Constantes.PASTELOFFSETX + Constantes.OFFSETXVISUAL;
 			int y = posActual.getCoordenadaY() + Constantes.PASTELOFFSETY + Constantes.OFFSETYVISUAL;
 			setLocation(x, y);
-		}
+		} else setLocation (-100, -100);
 		
 	}
 }

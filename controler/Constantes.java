@@ -29,7 +29,7 @@ public class Constantes {
 	public static final int ALTURAEDIFICIO = 1280;
 	
 	// Felix
-	public static final int VIDAS = 1;
+	public static final int VIDAS = 3;
 	public static final int FELIXOFFSETX = 0; // Pixeles
 	public static final int FELIXOFFSETY = 28; // Pixeles
 	public static final int FELIXOFFSETYPUERTA = 42; // Pixeles
@@ -77,6 +77,8 @@ public class Constantes {
 	public static final int OFFSETXVISUAL = 200;
 	public static final int OFFSETYVISUAL = Constantes.ALTURAVENTANA + Constantes.HEADER;
 	
+	// Otras
 	public static final String PATHIMAGES = "assets/images/";
 	public static final String PATHPUNTAJES = "assets/highscores.dat";
+	public static final long NANOSEGUNDOSPORFRAME = 16666666;
 }

@@ -22,8 +22,8 @@ public class Pajaro extends Proyectil {
 		velocidad = vel;
 		hitbox = Constantes.PAJAROHITBOX;
 		int coordX;
-		if (randomizador.nextInt(2) == 0) coordX = -hitbox.getAncho()*2 - Constantes.OFFSETXVISUAL;
-		else coordX = Constantes.ANCHOSECCION + hitbox.getAncho() + Constantes.OFFSETXVISUAL;
+		if (randomizador.nextInt(2) == 0) coordX = -hitbox.getAncho()*2 - Constantes.OFFSETXVISUAL - randomizador.nextInt(200);
+		else coordX = Constantes.ANCHOSECCION + hitbox.getAncho() + Constantes.OFFSETXVISUAL - - randomizador.nextInt(200);
 		posicion = new Posicion(coordX, coordY);
 		indexAnim = 0;
 
@@ -49,8 +49,8 @@ public class Pajaro extends Proyectil {
 	@Override
 	public void actualizar() throws ChoquePajaroException {
 		mover();
-		if ((posicion.getCoordenadaX() < (-hitbox.getAncho()*2 - Constantes.OFFSETXVISUAL)) ||
-			(posicion.getCoordenadaX() > (Constantes.ANCHOSECCION + hitbox.getAncho() + Constantes.OFFSETXVISUAL))) {
+		if ((posicion.getCoordenadaX() < (-hitbox.getAncho()*2 - Constantes.OFFSETXVISUAL - 200)) ||
+			(posicion.getCoordenadaX() > (Constantes.ANCHOSECCION + hitbox.getAncho() + Constantes.OFFSETXVISUAL + 200))) {
 			girar();
 		}
 		if (hayColicion()) {
