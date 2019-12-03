@@ -42,6 +42,9 @@ public class KeyboardDispacher implements KeyEventDispatcher{
 				Felix.getFelix().reparar();
 				soltoS = false;
 				break;
+			case KeyEvent.VK_ESCAPE:
+				Controler.getControler().pausa();
+				break;
 			}
 		}
 		if ((e.getID() == KeyEvent.KEY_RELEASED)){

@@ -248,7 +248,10 @@ public class Felix extends Entidad {
 	public boolean estaOcupado() {
 		return ocupado;
 	}
-	
+
+	public void setOcupado(boolean ocupado) {
+		this.ocupado = ocupado;
+	}
 }
 
 class EstadoFelix {

@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path=""/>
+	<classpathentry kind="src" path="src"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="assets/libraries/commons-lang3-3.9.jar" sourcepath="assets/libraries/commons-lang3-3.9-sources.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="jar:platform:/resource/FixItFelixJr2.0/assets/libraries/commons-lang3-3.9-javadoc.jar!/"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

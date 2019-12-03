@@ -5,6 +5,7 @@ import view.View;
 import java.awt.KeyboardFocusManager;
 
 import model.Model;
+import model.entidades.Felix;
 
 public class Controler{
 	private static Controler instancia;
@@ -95,5 +96,14 @@ public class Controler{
 		this.nivelInicial = nivelInicial;
 	}
 
+	public void pausa() {
+		Felix.getFelix().setOcupado(true);
+		mainThread.setEscena(Escena.PAUSA);	
+		View.getView().panelJuego.pausa();
+	}
 	
+	public void continuar() {
+		Felix.getFelix().setOcupado(false);
+		mainThread.setEscena(Escena.JUGANDO);
+	}
 }

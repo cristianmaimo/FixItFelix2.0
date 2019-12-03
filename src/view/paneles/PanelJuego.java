@@ -2,6 +2,7 @@ package view.paneles;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -13,6 +14,8 @@ import view.entidades.JPastel;
 import view.entidades.JProyectil;
 import view.entidades.JRalph;
 import view.paneles.utilidades.FinDeJuego;
+import view.paneles.utilidades.NivelCompletado;
+import view.paneles.utilidades.Pausa;
 import view.paneles.utilidades.PedirNombre;
 import controler.Constantes;
 import model.Model;
@@ -27,6 +30,8 @@ public class PanelJuego extends JPanel {
 	private JEdificio jedificio;
 	private JLabel background;
 	
+	private Pausa pausa;
+	private NivelCompletado nivelCompletado;
 	private FinDeJuego finDeJuego;
 	private PedirNombre pedirNombre;
 
@@ -41,6 +46,8 @@ public class PanelJuego extends JPanel {
 	}
 
 	private void initComponents() {
+		pausa = new Pausa();
+		nivelCompletado = new NivelCompletado();
 		finDeJuego = new FinDeJuego();
 		pedirNombre = new PedirNombre();
 		header = new Header();
@@ -58,6 +65,8 @@ public class PanelJuego extends JPanel {
 		background.setSize(getPreferredSize());
 		background.setLocation(0, -(Constantes.ALTURAEDIFICIO - Constantes.HEADER - Constantes.ALTURAVENTANA*4));
 		
+		add(pausa);
+		add(nivelCompletado);
 		add(finDeJuego);
 		add(pedirNombre);
 		add(header);
@@ -117,5 +126,52 @@ public class PanelJuego extends JPanel {
 	public void perdirNombre() {
 		finDeJuego.setVisible(false);
 		pedirNombre.setVisible(true);
+	}
+	
+	public void pausa() {
+		pausa.setVisible(true);
+	}
+
+	public void subiendo(int frame) {
+		switch (frame) {
+		case 0:
+			jfelix.setIcon(View.getImagenes().get("felixParado"));
+			jralph.setIcon(View.getImagenes().get("ralphEnojado0"));
+			break;
+		case 20:
+			jralph.setIcon(View.getImagenes().get("ralphEnojado1"));
+			break;
+		case 40:
+			jralph.setIcon(View.getImagenes().get("ralphEnojado0"));
+			break;
+		case 60:
+			jralph.setIcon(View.getImagenes().get("ralphEnojado1"));
+			break;
+		case 80:
+			jralph.setIcon(View.getImagenes().get("ralphSubiendo0"));
+			break;
+		case 100:
+			jralph.setIcon(View.getImagenes().get("ralphSubiendo1"));
+			break;
+		case 120:
+			jralph.setIcon(View.getImagenes().get("ralphSubiendo0"));
+			break;
+		case 140:
+			jralph.setIcon(View.getImagenes().get("ralphSubiendo1"));
+			break;
+		default:
+			if (frame > 80) jralph.setLocation(jralph.getLocation().x, jralph.getLocation().y - 2);
+			break;
+		}
+	}
+
+	public void pasando() {
+		nivelCompletado.setVisible(true);
+		try {
+			TimeUnit.MILLISECONDS.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		nivelCompletado.setVisible(false);
 	}
 }

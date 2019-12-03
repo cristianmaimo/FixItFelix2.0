@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Dimension;
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
@@ -54,6 +55,7 @@ public class Model{
 	private ArrayList<Proyectil> proyectiles;
 	private Pastel pastel;
 	private Temporizador temporizador;
+	Dimension a,v;
 	
 	private Random randomizador = new Random();
 	
@@ -331,5 +333,9 @@ public class Model{
 		} catch (IOException e) {
 			throw e;
 		}
+	}
+
+	public void reiniciarProyectiles() {
+		proyectiles.clear();
 	}
 }

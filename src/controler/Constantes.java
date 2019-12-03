@@ -43,7 +43,7 @@ public class Constantes {
 	
 	// Ralph
 	public static final int RALPHANCHO = 134;
-	public static final int RALPHALTO = 112;
+	public static final int RALPHALTO = 144;
 	public static final int CANTLADRILLOS = 40;
 	public static final Posicion RALPHSTART = new Posicion((int) (ANCHOVENTANA*2.5) - (RALPHANCHO/2) , -RALPHALTO);
 	public static final long TIEMPOMOVERRALPH = 5000;
@@ -56,7 +56,7 @@ public class Constantes {
 	public static final int CANTIDADPROYECTILES = 15;
 	public static final Hitbox LADRILLOHITBOX = new Hitbox(24, 16);
 	public static final int LADRILLOFRAMES = 15;
-	public static final int CHANCEROMPER = 1;
+	public static final long CHANCEROMPER = 2;
 	public static final Hitbox PAJAROHITBOX = new Hitbox(42, 38);
 	public static final int PAJAROFRAMES = 20;
 	public static final int PAJAROOFFSET = 37; //Pixeles

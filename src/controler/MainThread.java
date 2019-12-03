@@ -26,6 +26,8 @@ public class MainThread extends Thread {
 			case JUGANDO:
 				jugando();
 				break;
+			case PAUSA:
+				break;
 			case PASANDO:
 				pasando();
 				break;
@@ -36,6 +38,8 @@ public class MainThread extends Thread {
 				terminando();
 				break;
 			case REINICIANDO:
+				break;
+			default:
 				break;
 			}
 		} while (!exit);
@@ -48,6 +52,7 @@ public class MainThread extends Thread {
 	private void jugando() {
 		try {
 			Model.getModel().actualizar();
+			View.getView().panelJuego.actualizar();
 		} catch (ChoquePajaroException e) {
 			Edificio.getEdificio().reiniciarSeccion();
 			View.getView().panelJuego.actualizarMarcos();
@@ -56,35 +61,43 @@ public class MainThread extends Thread {
 			View.getView().panelJuego.actualizarMarcos();
 		} catch (FinDeSeccionException e) {
 			estado.setEscena(Escena.SUBIENDO);
+			Model.getModel().reiniciarProyectiles();
+			View.getView().panelJuego.actualizar();
 		} catch (FinDeJuegoException e) {
 			estado.setEscena(Escena.TERMINANDO);
 		}
 		try {
-			Thread.sleep(16, 666666); // 60FPS
-//				Thread.sleep(33, 333333); // 30FPS
-//				Thread.sleep(50); // 20FPS
-//				Thread.sleep(100); // 10FPS
+			Thread.sleep(16, 666666);
 		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
-		View.getView().panelJuego.actualizar();
 	}
 
 	private void subiendo() {
+		if (estado.frame < 150)
+			View.getView().panelJuego.subiendo(estado.frame++);
+		else {
+			try {
+				Edificio.getEdificio().avanzarSeccion();
+				estado.setEscena(Escena.JUGANDO);
+			} catch (FinDeNivelException e2) {
+				estado.setEscena(Escena.PASANDO);
+			}
+		}
 		try {
-			Edificio.getEdificio().avanzarSeccion();
-			View.getView().panelJuego.actualizarMarcos();
-			estado.setEscena(Escena.JUGANDO);
-		} catch (FinDeNivelException e) {
-			estado.setEscena(Escena.PASANDO);
+			Thread.sleep(16, 666666); // 60FPS
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 	}
-
+	
 	private void pasando() {
+		View.getView().panelJuego.pasando();
 		try {
 			Model.getModel().avanzarNivel();
 			View.getView().panelJuego.actualizarMarcos();
 			estado.setEscena(Escena.JUGANDO);
-		} catch (FinDeJuegoException e1) {
+		} catch (FinDeJuegoException e3) {
 			estado.setEscena(Escena.TERMINANDO);
 		}
 	}

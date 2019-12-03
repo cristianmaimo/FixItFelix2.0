@@ -16,7 +16,7 @@ public class Dificultad {
 	
 	public Dificultad(){
 		VENTANASROTAS = 12;
-		CHANCEGOLPEAR = 10;
+		CHANCEGOLPEAR = 20;
 		VELOCIDADLADRILLOS = 2; // Pixeles por frame
 		VELOCIDADPAJAROS = 2; // Pixeles por frame
 		CANTIDADOBSTACULOS = 3; // Total de obstaculos por nivel

@@ -41,6 +41,7 @@ public class View extends JFrame{
 	
 	private View() {
 		setTitle("Fix it Felix jr.");
+		setIconImage(imagenes.get("felixReparando2").getImage());
 		setLayout(null);
 		setResizable(false);
 		getContentPane().setBackground(Color.black);
@@ -84,7 +85,8 @@ public class View extends JFrame{
 		
 		String[] menues = {"CerrarBt1", "CerrarBt2", "CloseBt", "CloseBt1", "CloseBt2", "CloseBtt2", "configBt1", "configBt2",
 							"Configuracionbg", "exitBt1", "exitBt2", "HowTo", "JugarBt1", "JugarBt2", "logo", "MasBt1", "MasBt2",
-							"OkBt1", "OkBt2", "rulesBt1", "rulesBt2", "Top5", "topBt1", "topBt2", "victoria", "derrota", "newScore"};
+							"OkBt1", "OkBt2", "rulesBt1", "rulesBt2", "Top5", "topBt1", "topBt2", "victoria", "derrota",
+							"newScore", "pausa", "continuar1", "continuar2", "nivelCompletado"};
 		for (String actual : menues) {
 			imagen = new ImageIcon(Constantes.PATHIMAGES + "mainmenu/" + actual + ".png");
 			imagenes.put(actual, imagen);
@@ -101,7 +103,6 @@ public class View extends JFrame{
 				imagenes.put(Integer.toString(i), imagen);
 			}
 	}
-		
 	private static void imagenesEntidades() {
 		// Pastel
 		imagenes.put("pastel1", new ImageIcon(Constantes.PATHIMAGES + "pastel/pastel1.png"));
@@ -127,6 +128,10 @@ public class View extends JFrame{
 		imagenes.put("ralphGolpeando1", new ImageIcon(Constantes.PATHIMAGES + "ralph/ralphGolpeando1.png"));
 		imagenes.put("ralphGolpeando2", new ImageIcon(Constantes.PATHIMAGES + "ralph/ralphGolpeando2.png"));
 		imagenes.put("ralphGolpeando3", new ImageIcon(Constantes.PATHIMAGES + "ralph/ralphGolpeando3.png"));
+		imagenes.put("ralphEnojado0", new ImageIcon(Constantes.PATHIMAGES + "ralph/ralphEnojado0.png"));
+		imagenes.put("ralphEnojado1", new ImageIcon(Constantes.PATHIMAGES + "ralph/ralphEnojado1.png"));
+		imagenes.put("ralphSubiendo0", new ImageIcon(Constantes.PATHIMAGES + "ralph/ralphSubiendo0.png"));
+		imagenes.put("ralphSubiendo1", new ImageIcon(Constantes.PATHIMAGES + "ralph/ralphSubiendo1.png"));
 	}
 	private static void imagenesVentana() {
 		String temp;
@@ -153,7 +158,6 @@ public class View extends JFrame{
 			imagenes.put("panel" + panel, imagen);
 		}
 	}
-	
 	private static void imagenesFelix() {
 		String temp;
 		ImageIcon imagen;
@@ -182,5 +186,10 @@ public class View extends JFrame{
 		remove(panelJuego);
 		panelJuego = new PanelJuego();
 		add(panelJuego);
+	}
+
+	public void pasando() {
+		// TODO Auto-generated method stub
+		
 	}
 }

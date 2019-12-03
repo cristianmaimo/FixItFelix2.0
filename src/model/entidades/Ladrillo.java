@@ -37,7 +37,7 @@ public class Ladrillo extends Proyectil {
 	@Override
 	public void actualizar() throws ChoqueLadrilloException {
 		mover();
-		if (randomizador.nextInt(101) < Constantes.CHANCEROMPER) {
+		if (randomizador.nextInt(1001) < Constantes.CHANCEROMPER) {
 			if (posicion.dentroDe(new Posicion(0,0), new Posicion(Constantes.ANCHOSECCION, Constantes.ALTURASECCION))) {
 				romper();
 			}
