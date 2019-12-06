@@ -19,7 +19,7 @@ public class Header extends JLabel {
 	
 	
 	Header(){
-		setIcon(View.getImagenes().get("headerbg"));
+		setIcon(View.getImagenes().get("headerBg"));
 		setLayout(null);
 		setBorder(null);
 		setOpaque(false);
@@ -44,16 +44,16 @@ public class Header extends JLabel {
 		puntaje.actualizar();
 	}
 
-	public static ArrayList<ImageIcon> numeroAImagenes(int numeros, int tamañoArray) {
-		ArrayList<ImageIcon> imagenesNumeros = new ArrayList<ImageIcon>(tamañoArray);
+	public static ArrayList<ImageIcon> numeroAImagenes(int numeros, int tamanoArray) {
+		ArrayList<ImageIcon> imagenesNumeros = new ArrayList<ImageIcon>(tamanoArray);
 		String stringNumeros = Integer.toString(numeros);
 		String temp = "";
-		for (int i = 0; i < (tamañoArray - stringNumeros.length()); i++){
+		for (int i = 0; i < (tamanoArray - stringNumeros.length()); i++){
 			temp += "0";
 		}
 		stringNumeros = temp + stringNumeros;
 		
-		for (int i = 0; i < tamañoArray; i++) {
+		for (int i = 0; i < tamanoArray; i++) {
 			imagenesNumeros.add(i, View.getImagenes().get("" + stringNumeros.charAt(i)));
 		}
 		

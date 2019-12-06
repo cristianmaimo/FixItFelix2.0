@@ -21,7 +21,7 @@ public class Config extends JPanel{
 	public Config() {
 		setLayout(null);
 		setLocation(0,0);
-		setSize(Constantes.TAMAÑOFRAME);
+		setSize(Constantes.TAMANOFRAME);
 		setBackground(Color.black);
 		initComponents();
 		setVisible(false);
@@ -34,9 +34,9 @@ public class Config extends JPanel{
 		nivel.setSize(nivel.getPreferredSize());
 		add(nivel);
 		
-		ok = new JButton(View.getImagenes().get("OkBt1"));
+		ok = new JButton(View.getImagenes().get("okBt1"));
 		ok.setBorder(null);
-		ok.setRolloverIcon(View.getImagenes().get("OkBt2"));
+		ok.setRolloverIcon(View.getImagenes().get("okBt2"));
 		ok.setBorderPainted(false);
 		ok.setOpaque(false);
 		ok.setContentAreaFilled(false);
@@ -53,7 +53,7 @@ public class Config extends JPanel{
 		});
 		add(ok);
 	
-		background = new JLabel(View.getImagenes().get("Configuracionbg"));
+		background = new JLabel(View.getImagenes().get("configuracionBg"));
 		background.setBorder(null);
 		background.setLocation(Constantes.ANCHOFRAME/2 - 150, Constantes.ALTURAFRAME/2 - 97);
 		background.setSize(background.getPreferredSize());

@@ -23,7 +23,7 @@ public class MainMenu extends JPanel{
 	public MainMenu() {
 		setLayout(null);
 		setLocation(0,0);
-		setSize(Constantes.TAMAÑOFRAME);
+		setSize(Constantes.TAMANOFRAME);
 		setBackground(Color.black);
 		initComponents();
 		paintComponents(getGraphics());
@@ -121,9 +121,9 @@ public class MainMenu extends JPanel{
 		add(rules);
 	}
 	private void initJugar() {
-		jugar = new JButton(View.getImagenes().get("JugarBt1"));
+		jugar = new JButton(View.getImagenes().get("jugarBt1"));
 		jugar.setBorder(null);
-		jugar.setRolloverIcon(View.getImagenes().get("JugarBt2"));
+		jugar.setRolloverIcon(View.getImagenes().get("jugarBt2"));
 		jugar.setBorderPainted(false);
 		jugar.setOpaque(false);
 		jugar.setContentAreaFilled(false);

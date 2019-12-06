@@ -18,16 +18,16 @@ public class Reglas extends JPanel{
 	public Reglas() {
 		setLayout(null);
 		setLocation(0,0);
-		setSize(Constantes.TAMAÑOFRAME);
+		setSize(Constantes.TAMANOFRAME);
 		setBackground(Color.black);
 		initComponents();
 		setVisible(false);
 	}
 	private void initComponents() {
 
-		close = new JButton(View.getImagenes().get("CerrarBt1"));
+		close = new JButton(View.getImagenes().get("cerrarBt1"));
 		close.setBorder(null);
-		close.setRolloverIcon(View.getImagenes().get("CerrarBt2"));
+		close.setRolloverIcon(View.getImagenes().get("cerrarBt2"));
 		close.setBorderPainted(false);
 		close.setOpaque(false);
 		close.setContentAreaFilled(false);
@@ -43,7 +43,7 @@ public class Reglas extends JPanel{
 		});
 		add(close);
 		
-		background = new JLabel(View.getImagenes().get("HowTo"));
+		background = new JLabel(View.getImagenes().get("howTo"));
 		background.setBorder(null);
 		background.setLocation(Constantes.ANCHOFRAME/2 - 157, Constantes.ALTURAFRAME/2 - 130);
 		background.setSize(background.getPreferredSize());

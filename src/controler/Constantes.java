@@ -73,12 +73,12 @@ public class Constantes {
 	public static final int HEADER = 30;
 	public static final int ANCHOFRAME = 740; // Pixeles
 	public static final int ALTURAFRAME = 448 + Constantes.HEADER; // Pixeles
-	public static final Dimension TAMAÑOFRAME = new Dimension(Constantes.ANCHOFRAME, Constantes.ALTURAFRAME);
+	public static final Dimension TAMANOFRAME = new Dimension(Constantes.ANCHOFRAME, Constantes.ALTURAFRAME);
 	public static final int OFFSETXVISUAL = 200;
 	public static final int OFFSETYVISUAL = Constantes.ALTURAVENTANA + Constantes.HEADER;
 	
 	// Otras
 	public static final String PATHIMAGES = "assets/images/";
-	public static final String PATHPUNTAJES = "assets/highscores.dat";
+	public static final String PATHPUNTAJES = "highscores.dat";
 	public static final long NANOSEGUNDOSPORFRAME = 16666666;
 }

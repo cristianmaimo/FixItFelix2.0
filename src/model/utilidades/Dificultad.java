@@ -15,8 +15,8 @@ public class Dificultad {
 	//public final int TIEMPOLIMITE;
 	
 	public Dificultad(){
-		VENTANASROTAS = 12;
-		CHANCEGOLPEAR = 20;
+		VENTANASROTAS = 18;
+		CHANCEGOLPEAR = 25;
 		VELOCIDADLADRILLOS = 2; // Pixeles por frame
 		VELOCIDADPAJAROS = 2; // Pixeles por frame
 		CANTIDADOBSTACULOS = 3; // Total de obstaculos por nivel

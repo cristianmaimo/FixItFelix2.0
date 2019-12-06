@@ -21,9 +21,9 @@ public class FinDeJuego extends JLabel{
 		setSize(getPreferredSize());
 		setVisible(false);
 		
-		ok = new JButton(View.getImagenes().get("OkBt1"));
+		ok = new JButton(View.getImagenes().get("okBt1"));
 		ok.setBorder(null);
-		ok.setRolloverIcon(View.getImagenes().get("OkBt2"));
+		ok.setRolloverIcon(View.getImagenes().get("okBt2"));
 		ok.setBorderPainted(false);
 		ok.setOpaque(false);
 		ok.setContentAreaFilled(false);

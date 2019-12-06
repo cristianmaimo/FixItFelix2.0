@@ -40,7 +40,7 @@ public class PanelJuego extends JPanel {
 		setBorder(null);
 		setOpaque(false);
 		setLocation(0,0);
-		setSize(Constantes.TAMAÑOFRAME);
+		setSize(Constantes.TAMANOFRAME);
 		initComponents();
 		setVisible(false);
 	}

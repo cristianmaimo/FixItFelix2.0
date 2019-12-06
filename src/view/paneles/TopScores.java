@@ -30,7 +30,7 @@ public class TopScores extends JPanel {
 	public TopScores() {
 		setLayout(null);
 		setLocation(0,0);
-		setSize(Constantes.TAMAÑOFRAME);
+		setSize(Constantes.TAMANOFRAME);
 		setBackground(Color.cyan);
 		initComponents();
 		setVisible(false);
@@ -59,9 +59,9 @@ public class TopScores extends JPanel {
 			add(puntajes[i]);
 		}
 		
-		close = new JButton(View.getImagenes().get("CloseBt1"));
+		close = new JButton(View.getImagenes().get("cerrarBt3"));
 		close.setBorder(null);
-		close.setRolloverIcon(View.getImagenes().get("CloseBt2"));
+		close.setRolloverIcon(View.getImagenes().get("cerrarBt4"));
 		close.setBorderPainted(false);
 		close.setOpaque(false);
 		close.setContentAreaFilled(false);
@@ -78,7 +78,7 @@ public class TopScores extends JPanel {
 
 		add(close);
 
-		background = new JLabel(View.getImagenes().get("Top5"));
+		background = new JLabel(View.getImagenes().get("top5"));
 		background.setBorder(null);
 		background.setLocation(Constantes.ANCHOFRAME/2 - 210, 0);
 		background.setSize(background.getPreferredSize());
